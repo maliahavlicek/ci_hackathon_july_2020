@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+    Internal Error
+{% endblock %}
+{% block head_css %}
+    <link rel="stylesheet" href="{% static 'css/error.css' %}" type="text/css">
+{% endblock %}
+{% block page_heading %}
+    Internal Error
+{% endblock %}
+{% block main_content %}
+    <div>
+        <section>
+            <div class="home">
+                <div class="frame">
+
+                    <div class="interior_frame">
+                        <h1>We're sorry, but an error has occurred, our engineers have been notified and we're looking
+                            into it.</h1>
+
+                        <p><a class="main-redirect" href="{% url 'index' %}">Visit our Homepage</a></p>
+
+                        <div class="timer">
+                            <h4>Redirecting to the home page in</h4>
+                            <p><span class="time_left"><span id="timer">10</span> <span
+                                    class="time_units">seconds</span></span></p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+    {# Countdown timer #}
+    <script>
+        {#  time to wait in seconds #}
+        var blurred = true;
+        var time = 10;
+
+        function countdown_timer() {
+            if (blurred) {
+                time = time - 1;
+            }
+            if (time < 0) {
+                {# Redirect to home page #}
+                window.location = "{% url 'index' %}";
+            } else {
+                document.getElementById("timer").innerHTML = time;
+                window.setTimeout("countdown_timer()", 1000);
+            }
+        }
+
+        countdown_timer();
+
+    </script>
+{% endblock %}
+
