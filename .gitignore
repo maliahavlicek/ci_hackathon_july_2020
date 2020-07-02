@@ -1,0 +1,8 @@
+/db.sqlite3
+/.venv/
+/.idea/
+/env.py
+_pycache_
+.DS_store
+.pyc
+.coverage
