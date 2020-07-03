@@ -1,4 +1,7 @@
+
 # basic Django App with Login and Registration
+
+[![Build Status](https://travis-ci.org/maliahavlicek/ci_hackathon_july_2020.svg?branch=master)](https://travis-ci.org/maliahavlicek/ci_hackathon_july_2020)
 
 ## Local Envrionment
 1. Save a copy of the github repository located at https://github.com/maliahavlicek/ci_hackathon_july_2020.git by clicking the 'download.zip' button at the top of the page and extracting the zip file to your chosen folder. If you have Git installed on your system, you can clone the repository with the following command:
