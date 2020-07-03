@@ -1,1 +1,1 @@
-web: gunicorn ms4_challenger.wsgi:application
+web: gunicorn ci_hackathon_july_2020.wsgi:application
