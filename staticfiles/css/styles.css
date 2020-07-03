@@ -1,0 +1,202 @@
+:root {
+    --link: #0068DB;
+}
+/* smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* space out forms */
+form {
+    margin: 10px 0;
+}
+
+body {
+    font-size: 18px;
+    font-weight: 500;
+}
+/* overwrite fonts for headings and navigation */
+h1, h2, h3, h4, h5, h6, a.navbar-brand, a.nav-link {
+    font-size: 18px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 1.2rem;
+    margin: 15px 0 10px;
+}
+
+
+.textarea {
+    max-height: 150px;
+}
+
+/* force long links from file uploads to word wrap */
+a {
+    word-wrap: break-word;
+}
+
+/* add padding between navigation icons */
+.nav-image {
+    margin: 0 10px;
+}
+
+/* navigation icons */
+a.nav-link i {
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+/* set fonts buttons and inputs */
+button, input, select, textarea, a.btn, input.btn {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: .375rem .25rem;
+}
+
+input[type=file] {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* add background color to rails on desktop + renderings */
+html {
+    background-color: hsl(0, 0%, 86%)
+}
+
+/* have rails appear for larger devices so that content and inputs don't get too wide */
+body, nav, footer {
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* main-content height fills page */
+.main-content {
+    min-height: calc(100vh - 13rem);
+}
+
+/* make social footer icons get bigger and tilt if hoavered */
+.social a:hover i {
+    transform: rotate(-3deg) scale(1.3);
+}
+/* make label stand out more */
+label.control-label, .form-group label, .label {
+    font-weight: 800;
+}
+
+/* put a colon after a label */
+label.control-label::after, .form-group label:after {
+    content: ':';
+    position: relative;
+}
+
+/* no colon for checkbox groups */
+.form-group .checkbox_select_multiple label::after {
+    content: '';
+}
+
+/* buttons */
+/* buttons colors */
+button.btn, input.btn, a.btn {
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    background: var(--link);
+    color: white;
+}
+
+input[type=file] {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+a.btn-cancel, button.btn-cancel, input.btn-cancel, a.btn.btn-cancel {
+    background: gray;
+    color: #262626;
+}
+
+a.btn-cancel:hover, button.btn-cancel:hover, input.btn-cancel:hover, a.btn.btn-cancel:hover {
+    background: #92a9bf;
+}
+
+a.is-disabled {
+    pointer-events: all;
+    cursor: not-allowed;
+}
+
+/* footer */
+.footer {
+    display: block;
+    flex-direction: unset;
+    font-size: 1rem;
+    line-height: 1.75;
+    padding: .25em .75em;
+}
+
+/* footer spacing */
+footer p {
+    margin: .3rem 0;
+}
+
+/* footer icons */
+.footer a i {
+    padding: .25em 1.25em;
+}
+
+/* footer icon distancing*/
+.dist-even {
+    text-align: left;
+    display: block;
+    line-height: 1.75;
+    padding: .5em .75em;
+    position: relative;
+    justify-content: space-between;
+}
+
+/* TABLET STYLES */
+@media screen and (min-width: 768px) {
+     /* size links and headers */
+    h1, h2, h3, h4, h5, h6, a.navbar-brand, a.nav-link {
+        font-size: 31px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 28px;
+    }
+
+    h4 {
+        font-size: 26px;
+    }
+
+    h5 {
+        font-size: 24px;
+    }
+}
+
+/* DESKTOP STYLES */
+/* desktop and larger styles */
+@media screen and (min-width: 1024px) {
+
+}

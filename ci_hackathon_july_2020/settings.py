@@ -151,11 +151,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
-if DEBUG:
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
-else:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # SMTP Email configuration
