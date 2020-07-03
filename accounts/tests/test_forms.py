@@ -26,7 +26,7 @@ class TestUserRegistrationFrom(TestCase):
             'password2': 'user_password_test_1'
         })
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['username'], [u'A user with that username already exists.'])
+        self.assertEqual(form.errors['username'], [u'That username is already registered.'])
 
         # verify that same email cannot be registered
         form = UserRegistrationFrom({
