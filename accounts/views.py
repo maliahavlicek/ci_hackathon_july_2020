@@ -5,12 +5,6 @@ from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationFrom
 
 
-# Create your views here.
-def index(request):
-    """Return the index.html file"""
-    return render(request, 'index.html')
-
-
 @login_required
 def logout(request):
     """Log the user out"""
@@ -33,7 +27,7 @@ def login(request):
                 messages.success(request, "You have successfully logged in")
                 return redirect(reverse('index'))
             else:
-                login_form.add_error(None, "user name and password not valid.")
+                login_form.add_error(None, "Username/email and password not valid.")
     else:
         login_form = UserLoginForm()
 
@@ -43,6 +37,8 @@ def login(request):
 def registration(request):
     """Render the registration page"""
     if request.user.is_authenticated:
+        # logged in users can't go to registration page, send them back to challenges page
+        messages.error(request, 'You are already a registered user.')
         return redirect(reverse('index'))
 
     if request.method == "POST":
@@ -64,7 +60,3 @@ def registration(request):
     return render(request, 'registration.html', {"registration_form": registration_form})
 
 
-def user_profile(request):
-    """The user's profile page"""
-    user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {"profile": user})

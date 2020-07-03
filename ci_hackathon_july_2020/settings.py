@@ -13,6 +13,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from os import environ
 
+# SECURITY WARNING: don't run with debug turned on in production!
+if os.path.exists('env.py'):
+    import env
+    # can override local to False here if you want to test things like 404, 500 error
+    DEBUG = True
+else:
+    DEBUG = False
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,11 +31,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -39,8 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_forms_bootstrap',
+    'crispy_forms',
     'accounts',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

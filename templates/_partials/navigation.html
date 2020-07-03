@@ -1,0 +1,27 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg mr-auto">
+    <a class="navbar-brand" href="{% url 'index' %}">App Name</a>
+{#    <span class="navbar-item nav-image">#}
+{#        <img src="{% static 'favicon-32x32.png' %}" alt="Logo for App" width="32" height="32">#}
+{#    </span>#}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+            {% if user.is_authenticated %}
+                <li><a class="dropdown-item nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout</a>
+                </li>
+
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i>Login</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}"><i class="fa fa-user-plus"></i>Register</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </div>
+</nav>

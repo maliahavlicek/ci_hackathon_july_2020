@@ -1,6 +1,5 @@
 from django.test import TestCase
-from accounts.forms import UserLoginForm, UserRegistrationFrom, ProfileForm
-from datetime import datetime, timedelta
+from accounts.forms import UserLoginForm, UserRegistrationFrom
 
 
 class TestUserRegistrationFrom(TestCase):
@@ -27,7 +26,7 @@ class TestUserRegistrationFrom(TestCase):
             'password2': 'user_password_test_1'
         })
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['username'], [u'That username is already registered.'])
+        self.assertEqual(form.errors['username'], [u'A user with that username already exists.'])
 
         # verify that same email cannot be registered
         form = UserRegistrationFrom({
@@ -107,35 +106,3 @@ class TestUserLoginForm(TestCase):
             })
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['username'], [u'This field is required.'])
-
-
-class TestProfileFrom(TestCase):
-    """
-    Tests for Profile Form
-    """
-
-    def test_profile_tests(self):
-        # check birthdate must be in past
-        ten_years = datetime.today() - timedelta(days=10*365)
-        nine_years = ten_years + timedelta(days=3)
-        future = datetime.now() + timedelta(days=10)
-
-        # birth_date can't be in future
-        form = ProfileForm({
-            'birth_date': future,
-            })
-        self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['birth_date'], [u'Please enter a valid birth date.'])
-
-        # birth_date can't be 9 years adn 364 days
-        form = ProfileForm({
-            'birth_date': nine_years,
-        })
-        self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['birth_date'], [u'You must be 10 years or older to use this platform.'])
-
-        # birth_date needs to be 10 years or greater
-        form = ProfileForm({
-            'birth_date': ten_years,
-        })
-        self.assertTrue('birth_date' not in form.errors)

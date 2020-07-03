@@ -1,5 +1,6 @@
+{# Login Page #}
 {% extends "base.html" %}
-{% load bootstrap_tags %}
+{% load crispy_forms_tags %}
 {% block page_title %}
     Login Page
 {% endblock %}
@@ -7,11 +8,10 @@
     User Login
 {% endblock %}
 {% block main_content %}
-<form method="POST">
-    {%  csrf_token %}
-    {{ login_form | as_bootstrap }}
-    <button type="submit" class="btn btn-default">Login</button>
-
-</form>
+    <p>If you dot not have an account, you can <a href="{% url 'registration' %}">register</a>.</p>
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        {% crispy login_form %}
+    </form>
     <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
 {% endblock %}

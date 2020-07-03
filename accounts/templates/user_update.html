@@ -1,0 +1,16 @@
+{# Update User Info Entry Form Page #}
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% load crispy_forms_tags %}
+{% block page_title %}
+    Update User Info
+{% endblock %}
+{% block page_heading %}
+    Updating User Info
+{% endblock %}
+{% block main_content %}
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% crispy form %}
+    </form>
+{% endblock %}

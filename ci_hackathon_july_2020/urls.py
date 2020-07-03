@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import include
-from accounts.views import index
+from home.views import index
 from accounts import urls as accounts_urls
 from django.urls import path
 

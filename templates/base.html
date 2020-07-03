@@ -2,42 +2,74 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block page_title %}{% endblock %}</title>
-   <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block page_title %}Challenger{% endblock %}</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- font awesome -->
+    <script defer src="https://kit.fontawesome.com/6a08e8ea2d.js" crossorigin="anonymous"
+            nonce="4AAemGb0xJpto1GFP3Nd"></script>
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="{% static 'apple-touch-icon.png' %}"/>
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{% static 'favicon-32x32.png' %}"/>
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="{% static 'favicon-16x16.png' %}"/>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+    <!-- Title Font -->
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:600&display=swap" rel="stylesheet">
+    <!-- Base Font -->
+    <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
     <!-- own styles -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" >
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/stars.css' %}" type="text/css">
+    <!-- meta description -->
+    <meta name="description"
+          content="The Challenger site brings small groups with common interests together, providing a forum to challenge each other's skills. From taking a picture of the sunset, to building a Rube Goldberg machine to close a door, throw down the gauntlet and Challenger On! The sky's the limit.">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- block to allow users to add css -->
+    {% block head_css %}
+    {% endblock %}
+    <!-- bootstap js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <!-- block to allow user to add js -->
+    {% block head_js %}
+    {% endblock %}
 
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <ul class="nav navbar-nav">
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-            <li><a href="{% url 'profile' %}#">Profile</a></li>
-        {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'registration' %}">Register</a></li>
+
+    {% include '_partials/navigation.html' %}
+    <div class="main-content">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endif %}
-    </ul>
-</nav>
-<h1>{% block page_heading %}{% endblock %}</h1>
-{% if messages %}
-    <div>
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
+        <div class="container page-heading">
+            <h1>{% block page_heading %}{% endblock %}</h1>
+        </div>
+
+        <div class="container">
+            {% block main_content %}
+            {% endblock %}
+        </div>
     </div>
-{% endif %}
-{% block main_content %}
-{% endblock %}
+    {% include '_partials/footer.html' %}
+
 </body>
 </html>
