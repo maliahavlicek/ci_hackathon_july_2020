@@ -21,5 +21,5 @@ SECRET_KEY = "abc123"
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=accounts,challenges,checkout,home,products,ratings,submissions',
+    '--cover-package=accounts,home,products',
 ]
