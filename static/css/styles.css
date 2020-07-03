@@ -1,4 +1,7 @@
-
+/* colors */
+:root {
+    --link: #0068DB;
+}
 /* smooth scrolling */
 html {
     scroll-behavior: smooth;
@@ -113,7 +116,7 @@ button.btn, input.btn, a.btn {
     text-transform: uppercase;
     border: none;
     cursor: pointer;
-    background: var(--blue);
+    background: var(--link);
     color: white;
 }
 
