@@ -30,7 +30,11 @@ form {
 body {
     font-size: 18px;
     font-weight: 500;
+    font-family: var(--text-font-family);
+    color: var(--text);
+    border-radius: var(--box-radius);
 }
+
 /* overwrite fonts for headings and navigation */
 h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
@@ -56,6 +60,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--color-main-blue);
     background: linear-gradient(90deg, rgba(33,98,149,1) 0%, rgba(159,63,218,1) 100%);
     box-shadow: var(--box-shadow);
+    border-radius: var(--box-radius);
 }
 
 .navbar-toggler {
@@ -245,6 +250,9 @@ footer p {
 
 /* DESKTOP STYLES */
 /* desktop and larger styles */
-@media screen and (min-width: 1024px) {
-
+@media screen and (max-width: 1200px) {
+    .navbar {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
 }
