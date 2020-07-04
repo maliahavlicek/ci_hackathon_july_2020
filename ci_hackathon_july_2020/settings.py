@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_nose',
     'accounts',
     'storages',
+    'posts',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
