@@ -31,13 +31,15 @@ body {
     font-weight: 500;
 }
 /* overwrite fonts for headings and navigation */
-h1, h2, h3, h4, h5, h6, a.navbar-brand, a.nav-link {
+h1, h2, h3, h4, h5, h6, a.nav-link {
     font-size: 18px;
 }
 
 #logo-text {
     text-transform: uppercase;
     font-family: var(--heading-font-family);
+    color: var(--color-main-blue);
+    font-size: 22px;
 }
 
 h1 {
