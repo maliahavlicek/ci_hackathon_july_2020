@@ -1,12 +1,20 @@
-/db.sqlite3
 /.venv/
 /.idea/
-/env.py
-_pycache_
 .DS_store
-.pyc
 .coverage
 /staticfiles/admin/
-.vscode
-env
+
+# Exclude Django created local def folders
+*/migrations/*
+*.sqlite3
+*.pyc
 __pycache__
+__init__.py
+
+# Exclude VScode created def folders
+.vscode
+env.py
+env
+
+# Exclude media folder
+media
