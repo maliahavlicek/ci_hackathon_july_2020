@@ -2,6 +2,21 @@ from django.conf import settings
 from django.db import models
 
 
+class Reaction(models.Model):
+    """
+    A model for the reaction icons.
+    """
+    name = models.CharField(max_length=10)
+    icon = models.ImageField(
+        upload_to='icons',
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return self.name
+
+
 class Post(models.Model):
     """
     User createdable posts.
@@ -9,8 +24,13 @@ class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     status = models.TextField(max_length=250)
+    react = models.ForeignKey(
+        Reaction,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
     placed = models.BooleanField(default=False)
-    reations = models.CharField(max_length=25)
     datetime = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(
         upload_to='posts',
