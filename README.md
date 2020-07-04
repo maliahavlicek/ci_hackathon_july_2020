@@ -17,6 +17,7 @@ then run
 so that changes will be collected to AWS. This way the deployment in heroku will then have access to the updates.
 
 ## Local Environment
+### FIRST TIME LOCAL SETUP
 1. Save a copy of the github repository located at https://github.com/maliahavlicek/ci_hackathon_july_2020.git by clicking the 'download.zip' button at the top of the page and extracting the zip file to your chosen folder. If you have Git installed on your system, you can clone the repository with the following command:
    ```bash
    $ git clone https://github.com/maliahavlicek/ci_hackathon_july_2020.git
@@ -71,8 +72,15 @@ so that changes will be collected to AWS. This way the deployment in heroku will
     ```bash
     python manage.py runserver
     ```
-   
-   
+1. if using gitpod, update settings.py to include 'localhost' in the ALLOWED_HOSTS
+
+### After Initial Setup
+1. Pull or fetch data from branch or master
+1. ```python manage.py makemigrations``` 
+1. ```python manage.py migrate```
+
+
+
 ## Testing
 Basic test framework has been installed using django-nose driver. To run tests execute the following command from the terminal window:
  

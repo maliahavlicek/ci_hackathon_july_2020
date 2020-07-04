@@ -3,6 +3,34 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Family
+from django.template.defaultfilters import filesizeformat
+
+
+class CreateFamilyForm(forms.Form):
+    """
+    Form to Create A Family
+    """
+    family_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
+    hero_image = forms.ImageField(label="Hero Image")
+    members = forms.CharField(widget=forms.HiddenInput(), required=False)
+
+    class Meta:
+        model = Family
+        fields = [
+            'family_name',
+            'hero_image',
+            'members',
+        ]
+
+    def clean_hero_image(self):
+        image_file = self.cleaned_data.get('hero_image')
+        if image_file:
+            # limit images to 10 MB
+            size_limit = 10485760
+            if image_file.size > size_limit:
+                self.add_error('hero_image', 'Please keep file size under %s. Current size %s' % (
+                    filesizeformat(size_limit), filesizeformat(image_file.size)))
 
 
 class UserLoginForm(forms.Form):
