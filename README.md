@@ -1,9 +1,22 @@
 
 # basic Django App with Login and Registration
 
+## travis build status
 [![Build Status](https://travis-ci.org/maliahavlicek/ci_hackathon_july_2020.svg?branch=master)](https://travis-ci.org/maliahavlicek/ci_hackathon_july_2020)
 
-## Local Envrionment
+## Changing CSS or JS files
+Files stored in /static folders are hosted by AWS. if you make a change
+you may not see it. 
+
+If you are actively working on CSS or JS update the settings.py file to use:
+```STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"```
+**Don't check in this change** Revert it back to 
+```STATICFILES_STORAGE = "custom_storages.StaticStorage"```
+then run 
+```python manage.py collectstatic```
+so that changes will be collected to AWS. This way the deployment in heroku will then have access to the updates.
+
+## Local Environment
 1. Save a copy of the github repository located at https://github.com/maliahavlicek/ci_hackathon_july_2020.git by clicking the 'download.zip' button at the top of the page and extracting the zip file to your chosen folder. If you have Git installed on your system, you can clone the repository with the following command:
    ```bash
    $ git clone https://github.com/maliahavlicek/ci_hackathon_july_2020.git
@@ -59,7 +72,15 @@
     python manage.py runserver
     ```
    
- ## Testing
- Basic test framework has been installed using django-nose driver. To run tests execute the following command from the terminal window:
+   
+## Testing
+Basic test framework has been installed using django-nose driver. To run tests execute the following command from the terminal window:
  
- ``` python manage.py test --noinput --settings ci_hackathon_july_2020.settings_test```
+``` python manage.py test --noinput --settings ci_hackathon_july_2020.settings_test```
+
+
+## Notes
+
+Google recently updated security policies. Now you have to do two things after setting up an app specific email via gmail. First log out of all gmail accounts and log into the one you are going to use for your application then hit these two URLS:
+1) [turn off captcha](https://accounts.google.com/displayunlockcaptcha)
+2) [less secure settings](https://myaccount.google.com/lesssecureapps?pli=1) 
