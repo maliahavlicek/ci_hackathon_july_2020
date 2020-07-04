@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationFrom, CreateFamilyForm
-from accounts.models import Family
+from accounts.models import Family, UserExtended
 from django.contrib.auth.models import User
 import json
 from .password import random_string
@@ -50,6 +50,8 @@ def registration(request):
             registration_form.save()
             user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password1'])
+            UserExtended.objects.create(user=user)
+
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully registered.")

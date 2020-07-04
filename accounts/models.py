@@ -13,7 +13,8 @@ class UserExtended(models.Model):
     profile_picture = models.ImageField(
         upload_to='profile',
         null=True,
-        blank=True
+        blank=True,
+        default="profile1.png",
     )
 
 
