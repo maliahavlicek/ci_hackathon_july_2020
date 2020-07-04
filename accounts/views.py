@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationFrom, CreateFamilyForm
-from accounts.models import Family, UserExtended
-from django.contrib.auth.models import User
+from accounts.models import Family
+from users.models import User
 import json
 from .password import random_string
 
@@ -23,14 +23,14 @@ def login(request):
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
-            user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+            user = auth.authenticate(email=request.POST['email'], password=request.POST['password'])
 
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully logged in")
                 return redirect(reverse('index'))
             else:
-                login_form.add_error(None, "Username/email and password not valid.")
+                login_form.add_error(None, "Email and/or password not valid.")
     else:
         login_form = UserLoginForm()
 
@@ -48,9 +48,8 @@ def registration(request):
         registration_form = UserRegistrationFrom(request.POST)
         if registration_form.is_valid():
             registration_form.save()
-            user = auth.authenticate(username=request.POST['username'],
+            user = auth.authenticate(email=request.POST['email'],
                                      password=request.POST['password1'])
-            UserExtended.objects.create(user=user)
 
             if user:
                 auth.login(user=user, request=request)
@@ -134,10 +133,7 @@ def create_family(request):
                     passwd = random_string(4, 4)
                     user1 = User.objects.create(
                         email=member['email'],
-                        username=member['email'],
                         password=passwd,
-                        first_name=member['first_name'],
-                        last_name=member['last_name'],
                     )
 
                     family.members.add(user1)

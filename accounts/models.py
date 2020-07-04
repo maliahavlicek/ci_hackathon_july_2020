@@ -1,21 +1,5 @@
-from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
-
-
-class UserExtended(models.Model):
-    """
-    The user extended model to create a
-    new user and extend it with some extra field options.
-    A extended user can only have 1 user & user only 1 extended user
-    """
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(
-        upload_to='profile',
-        null=True,
-        blank=True,
-        default="profile1.png",
-    )
+from users.models import User
 
 
 class Family(models.Model):

@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from users.models import User
 
 
 class Reaction(models.Model):
@@ -21,7 +22,7 @@ class Post(models.Model):
     """
     User createdable posts.
     """
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user = models.ForeignKey(User,
                              on_delete=models.CASCADE)
     status = models.TextField(max_length=250)
     react = models.ForeignKey(

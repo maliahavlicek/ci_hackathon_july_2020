@@ -1,18 +1,5 @@
 from django.contrib import admin
-from .models import UserExtended, Family
-
-
-class UserExtendedAdmin(admin.ModelAdmin):
-    list_display = (
-        'user',
-        'profile_picture'
-    )
-    search_fields = (
-        'user',
-    )
-
-
-admin.site.register(UserExtended, UserExtendedAdmin)
+from .models import Family
 
 
 class FamilyAdmin(admin.ModelAdmin):
