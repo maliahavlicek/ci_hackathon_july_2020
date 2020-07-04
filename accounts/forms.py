@@ -7,32 +7,6 @@ from .models import Family
 from django.template.defaultfilters import filesizeformat
 
 
-class CreateFamilyForm(forms.Form):
-    """
-    Form to Create A Family
-    """
-    family_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
-    hero_image = forms.ImageField(label="Hero Image")
-    members = forms.CharField(widget=forms.HiddenInput(), required=False)
-
-    class Meta:
-        model = Family
-        fields = [
-            'family_name',
-            'hero_image',
-            'members',
-        ]
-
-    def clean_hero_image(self):
-        image_file = self.cleaned_data.get('hero_image')
-        if image_file:
-            # limit images to 10 MB
-            size_limit = 10485760
-            if image_file.size > size_limit:
-                self.add_error('hero_image', 'Please keep file size under %s. Current size %s' % (
-                    filesizeformat(size_limit), filesizeformat(image_file.size)))
-
-
 class UserLoginForm(forms.Form):
     """ Form to be used by login """
     username = forms.CharField(widget=forms.TextInput(attrs={
@@ -127,3 +101,28 @@ class UserRegistrationFrom(UserCreationForm):
             Submit('submit', 'Register')
         )
 
+
+class CreateFamilyForm(forms.Form):
+    """
+    Form to Create A Family
+    """
+    family_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
+    hero_image = forms.ImageField(label="Hero Image")
+    members = forms.CharField(widget=forms.HiddenInput(), required=False)
+
+    class Meta:
+        model = Family
+        fields = [
+            'family_name',
+            'hero_image',
+            'members',
+        ]
+
+    def clean_hero_image(self):
+        image_file = self.cleaned_data.get('hero_image')
+        if image_file:
+            # limit images to 10 MB
+            size_limit = 10485760
+            if image_file.size > size_limit:
+                self.add_error('hero_image', 'Please keep file size under %s. Current size %s' % (
+                    filesizeformat(size_limit), filesizeformat(image_file.size)))

@@ -1,9 +1,9 @@
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationFrom, CreateFamilyForm
-from .models import Family
+from accounts.models import Family
+from django.contrib.auth.models import User
 import json
 from .password import random_string
 
@@ -85,7 +85,7 @@ def wall(request, id):
     """
     user = request.user
     family = Family.objects.get(pk=id)
-    members = family.members
+    members = family.get_members()
     if user not in members:
         messages.warning(request, "I'm sorry, you do not belong to the family selected.")
 

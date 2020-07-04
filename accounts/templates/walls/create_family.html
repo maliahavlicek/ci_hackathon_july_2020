@@ -17,7 +17,7 @@
 {% block main_content %}
     {# Put main content here. SHOULD NOT BE EMPTY. #}
     {% localtime on %}
-        <form method="POST" method="post" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form |as_bootstrap }}
             <button class="btn btn-default">CREATE FAMILY</button>
