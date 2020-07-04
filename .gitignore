@@ -7,3 +7,6 @@ _pycache_
 .pyc
 .coverage
 /staticfiles/admin/
+.vscode
+env
+__pycache__
