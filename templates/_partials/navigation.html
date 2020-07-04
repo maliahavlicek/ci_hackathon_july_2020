@@ -1,7 +1,9 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg mr-auto">
     <span class="navbar-item nav-image">
-        <img src="{% static 'logo.svg' %}" alt="Logo for App">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'logo.svg' %}" alt="Logo for App">
+        </a>
     </span>
     <a class="navbar-brand" id="logo-text" href="{% url 'index' %}">Family Wall</a>
 
