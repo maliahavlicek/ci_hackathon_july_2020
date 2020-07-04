@@ -60,6 +60,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-toggler {
     box-shadow: var(--box-shadow);
+    border: 1.5px solid var(--color-secondary-supporting-purple);
+    border-radius: var(--box-radius);
+}
+
+.nav-image img {
+    max-height: 23px;
 }
 
 h1 {
