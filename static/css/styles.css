@@ -20,6 +20,7 @@
 /* smooth scrolling */
 html {
     scroll-behavior: smooth;
+    /* background-color: #ffffff; */
 }
 
 /* space out forms */
@@ -33,6 +34,7 @@ body {
     font-family: var(--text-font-family);
     color: var(--text);
     border-radius: var(--box-radius);
+    box-shadow: var(--box-shadow);
 }
 
 /* overwrite fonts for headings and navigation */
