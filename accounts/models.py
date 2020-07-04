@@ -11,7 +11,7 @@ class UserExtended(models.Model):
     """
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     profile_picture = models.ImageField(
-        upload_to='images',
+        upload_to='profile',
         null=True,
         blank=True
     )
@@ -25,7 +25,7 @@ class Family(models.Model):
     family_name = models.CharField(max_length=25)
     members = models.ManyToManyField(settings.AUTH_USER_MODEL)
     hero_image = models.ImageField(
-        upload_to='images',
+        upload_to='banners',
         null=True,
         blank=True
     )
