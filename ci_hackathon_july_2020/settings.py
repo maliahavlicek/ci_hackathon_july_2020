@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from os import environ
+import dj_database_url
 from django.contrib.messages import constants as messages
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -35,7 +36,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = [os.environ.get(
-    'HOSTNAME'), "127.0.0.1", "adv-b-wall.herokuapp.com"]
+    'HOSTNAME'), "127.0.0.1", "adv-b-wall.herokuapp.com", "localhost", ]
 DEFAULT_DOMAIN = 'https://{}'.format(ALLOWED_HOSTS[0])
 # Application definition
 
@@ -90,25 +91,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ci_hackathon_july_2020.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'TEST': {
+                'NAME': 'mytestdatabase',
+            },
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 AUTH_USER_MODEL = 'users.User'
 
 AUTH_PASSWORD_VALIDATORS = [
-  {
-    'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
   },
   {
     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -178,7 +186,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'what2do2day0@gmail.com'
 EMAIL_HOST_PASSWORD = environ.get('EMAIL_PASS')
 
-
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -186,3 +193,11 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+if DEBUG:
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+    MEDIA_URL = '/media/'
+else:
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
