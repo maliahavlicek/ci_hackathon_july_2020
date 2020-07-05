@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'crispy_forms',
-    "django_nose",
+    'django_nose',
+    'home',
     'accounts',
     'storages',
 ]
