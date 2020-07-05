@@ -10,6 +10,7 @@
     --color-main-supporting-blue: #3F96DA;
     --color-secondary-purple: #E5AFFE;
     --color-secondary-supporting-purple: #fff6ff;
+    --color-secondary-supporting-blue: #e8f5ff;
 
     --color-main-gradient: linear-gradient(90deg, rgba(33,98,149,1) 0%, rgba(159,63,218,1) 100%);
 
@@ -20,7 +21,7 @@
 /* smooth scrolling */
 html {
     scroll-behavior: smooth;
-    /* background-color: #ffffff; */
+    background-color: var(--color-secondary-supporting-blue);
 }
 
 /* space out forms */
@@ -133,9 +134,9 @@ input[type=file] {
 
 
 /* add background color to rails on desktop + renderings */
-html {
+/* html {
     background-color: hsl(0, 0%, 86%)
-}
+} */
 
 /* have rails appear for larger devices so that content and inputs don't get too wide */
 body, nav, footer {
