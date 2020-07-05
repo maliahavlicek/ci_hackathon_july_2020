@@ -158,6 +158,10 @@ body, nav, footer {
     margin-right: auto;
 }
 
+a .fa-github {
+    color: var(--color-secondary-supporting-purple);
+}
+
 /* main-content height fills page */
 .main-content {
     min-height: calc(100vh - 13rem);
