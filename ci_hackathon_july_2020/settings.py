@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django_forms_bootstrap',
     'crispy_forms',
     'django_nose',
+    'home',
     'storages',
     'users',
     'accounts',

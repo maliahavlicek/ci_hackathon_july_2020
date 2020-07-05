@@ -80,6 +80,7 @@ class TestLogin(TestCase):
             'password': 'testing321',
         }, follow=True)
 
+        self.assertTemplateUsed(page, 'index.html')
         self.assertContains(page, 'You have successfully logged in')
         user = auth.get_user(self.client)
 
