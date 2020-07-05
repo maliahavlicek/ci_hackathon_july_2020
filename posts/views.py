@@ -13,9 +13,15 @@ def add_image(request, id):
     Show Image Share Form
     """
     user = request.user
-    family = Family.objects.filter(id=id)
-    if user not in family.get_members():
-        messages.warning(request, "You do not have permission to share an image to this wall.")
+    family = Family.objects.get(id=id)
+    if family:
+        # in case user messes with url to try to post to a wall they don't belong to
+        if user not in family.get_members():
+            messages.warning(request, "You do not have permission to and an image to this wall.")
+            return redirect(reverse('wall'))
+    else:
+        # in case user bookmarks a page and db re-indexes
+        messages.warning(request, "Sorry the family you are adding an image to does not exist.")
         return redirect(reverse('wall'))
 
     return render(request, "share_image.html")
@@ -41,9 +47,15 @@ def add_post(request, id):
     Show Add Post Form
     """
     user = request.user
-    family = Family.objects.filter(id=id)
-    if user not in family.get_members():
-        messages.warning(request, "You do not have permission to post to this wall.")
+    family = Family.objects.get(id=id)
+    if family:
+        # in case user messes with url to try to post to a wall they don't belong to
+        if user not in family.get_members():
+            messages.warning(request, "You do not have permission to post to this wall.")
+            return redirect(reverse('wall'))
+    else:
+        # in case user bookmarks a page and db re-indexes
+        messages.warning(request, "Sorry the family you are posting to does not exist.")
         return redirect(reverse('wall'))
 
     return render(request, "create_post.html")
