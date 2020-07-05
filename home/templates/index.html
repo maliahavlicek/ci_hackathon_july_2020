@@ -2,35 +2,35 @@
 {% load static %}
 {% block page_heading %}
     <div class="center">
-        Home Page
+        Welcome To our App
     </div>
 {% endblock %}
 {% block main_content %}
-    <h1>Welcome To our App</h1>
-
     <div class="container">
         <div class="row">
             <div class="col">
-                <p>There will be daily digests of auto prompts, the ability to post images, write comments and add emotion icons to posts</p>
-                <p>We hope to have a dashboard that summarizes the family/group daily digest so you can quickly spot check on your members</p>
-                <p>We hope to have a recent post view so you can see the latest news from the group</p>  
+                <p>There will be daily digests of auto prompts, the ability to post images, write comments and add
+                    emotion icons to posts</p>
+                <p>We hope to have a dashboard that summarizes the family/group daily digest so you can quickly spot
+                    check on your members</p>
+                <p>We hope to have a recent post view so you can see the latest news from the group</p>
             </div>
             <div class="col">
-                <img src="" alt=" hero image?">
+                <img src="{% static '/assets/images/home_hero_image.png' %}" alt=" hero image">
             </div>
         </div>
-            <div class="row">
-                <button> Join the Family </button>
+        <div class="row">
+            <button> Join the Family</button>
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="{% static '/assets/images/app_desktop.png' %}" alt=" desktop image">
             </div>
-            <div class="row">
-                <div class="col"> 
-                    <img src="" alt=" desktop image">
-                </div>
-                <div class="col">
-                    <img src="" alt=" mobile image">
-                </div>
+            <div class="col">
+                <img src="{% static '/assets/images/app_mobile.png' %}" alt=" mobile image">
             </div>
+        </div>
     </div>
 
- 
+
 {% endblock %}
