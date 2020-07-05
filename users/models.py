@@ -6,6 +6,7 @@ from . import constants as user_constants
 
 
 class User(AbstractUser):
+    username = None  # remove username field, we will use email as unique identifier
     email = models.EmailField(unique=True, null=True, db_index=True)
     user_type = models.PositiveSmallIntegerField(choices=user_constants.USER_TYPE_CHOICES, default=2)
 

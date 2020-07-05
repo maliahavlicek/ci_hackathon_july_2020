@@ -49,13 +49,12 @@ INSTALLED_APPS = [
     'django_forms_bootstrap',
     'crispy_forms',
     'django_nose',
-    'accounts',
     'storages',
-    'posts',
     'users',
+    'accounts',
+    'posts',
 ]
 
-AUTH_USER_MODEL = 'users.User'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -104,6 +103,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+AUTH_USER_MODEL = 'users.User'
 
 AUTH_PASSWORD_VALIDATORS = [
   {
