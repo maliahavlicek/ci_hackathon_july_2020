@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from users.models import User
+from accounts.models import Family
 
 
 class Reaction(models.Model):
@@ -24,6 +25,8 @@ class Post(models.Model):
     """
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE)
+    family = models.ForeignKey(Family,
+                               on_delete=models.CASCADE)
     status = models.TextField(max_length=250)
     react = models.ForeignKey(
         Reaction,

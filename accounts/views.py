@@ -6,6 +6,7 @@ from accounts.models import Family
 from users.models import User
 import json
 from .password import random_string
+from posts.models import Post
 
 
 @login_required
@@ -73,7 +74,10 @@ def default_wall(request):
     family = Family.objects.filter(members=user).first()
 
     if family:
-        return render(request, "walls/wall.html", {"family": family, "user": user})
+        posts = Post.objects.filter(family=family.pk).order_by('-datetime')[:30]
+        if not posts:
+            posts = []
+        return render(request, "walls/wall.html", {"family": family, "user": user, "posts": posts})
     else:
         messages.success(request, "You do not belong to any families yet, please create one.")
         return redirect(reverse('create_family'))
@@ -91,7 +95,10 @@ def wall(request, id):
         messages.warning(request, "I'm sorry, you do not belong to the family selected.")
 
     if family:
-        return render(request, "walls/wall.html", {"family": family, "user": user})
+        posts = Post.objects.filter(family=family.pk).order_by('-datetime')[:30]
+        if not posts:
+            posts = []
+        return render(request, "walls/wall.html", {"family": family, "user": user, "posts": posts})
     else:
         messages.success(request, "You do not belong to any families yet, please create one.")
         return redirect(reverse('create_family'))

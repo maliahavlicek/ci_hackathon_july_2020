@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.conf.urls import include
 from home.views import index
 from accounts import urls as accounts_urls
+from posts import urls as post_urls
 from django.urls import path
 from django.conf.urls.static import static
 import ci_hackathon_july_2020.settings as settings
 
-urlpatterns = [
+urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('accounts/', include(accounts_urls))
+    path('accounts/', include(accounts_urls)),
+    path('posts/', include(post_urls))
 ]
