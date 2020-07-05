@@ -10,7 +10,9 @@
     --color-main-supporting-blue: #3F96DA;
     --color-secondary-purple: #E5AFFE;
     --color-secondary-supporting-purple: #fff6ff;
-    --color-main-gradient: linear-gradient(90deg, #216295 0%, #9F3FDA 100%);
+    --color-secondary-supporting-blue: #e8f5ff;
+
+    --color-main-gradient: linear-gradient(90deg, rgba(33, 98, 149, 1) 0%, rgba(159, 63, 218, 1) 100%);
 
     --box-shadow: 0px 1px 10px rgba(51, 51, 51, 0.25);
     --box-radius: 10px;
@@ -19,6 +21,7 @@
 /* smooth scrolling */
 html {
     scroll-behavior: smooth;
+    background-color: var(--color-secondary-supporting-blue);
 }
 
 /* space out forms */
@@ -29,10 +32,64 @@ form {
 body {
     font-size: 18px;
     font-weight: 500;
+    font-family: var(--text-font-family);
+    color: var(--text);
+    border-radius: var(--box-radius);
+    box-shadow: var(--box-shadow);
 }
+
 /* overwrite fonts for headings and navigation */
-h1, h2, h3, h4, h5, h6, a.navbar-brand, a.nav-link {
+h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
+}
+
+a {
+    color: var(--color-main-blue);
+}
+
+#submit-id-submit {
+    padding: 6px 15px;
+    background-color: var(--color-main-blue);
+    margin: 3% 0;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: var(--heading-font-family);
+}
+
+#logo-text, .nav-link {
+    text-transform: uppercase;
+    font-family: var(--heading-font-family);
+    color: var(--color-secondary-supporting-purple);
+    font-size: 22px;
+}
+
+#logo-text {
+    font-size: 23px;
+    padding-left: 8px;
+}
+
+.nav-link {
+    font-size: 18px;
+}
+
+.navbar {
+    background: var(--color-main-blue);
+    background: linear-gradient(90deg, rgba(33, 98, 149, 1) 0%, rgba(159, 63, 218, 1) 100%);
+    box-shadow: var(--box-shadow);
+    border-radius: 0 0 var(--box-radius) var(--box-radius);
+    margin-bottom: 3%;
+}
+
+.navbar-toggler {
+    box-shadow: var(--box-shadow);
+    border: 1.5px solid var(--color-secondary-supporting-purple);
+    border-radius: var(--box-radius);
+}
+
+.nav-image img {
+    max-height: 23px;
 }
 
 h1 {
@@ -75,6 +132,9 @@ button, input, select, textarea, a.btn, input.btn {
     font-weight: 500;
     line-height: 24px;
     padding: .375rem .25rem;
+
+    box-shadow: var(--box-shadow);
+    box-radius: var(--box-radius);
 }
 
 input[type=file] {
@@ -83,19 +143,29 @@ input[type=file] {
     line-height: 24px;
     border-radius: 4px;
     cursor: pointer;
+    width: auto;
+    padding: .2rem 0 .475rem;
+    border: none;
+    box-shadow: none;
+    min-height: 100%;
+
 }
 
 
 /* add background color to rails on desktop + renderings */
-html {
+/* html {
     background-color: hsl(0, 0%, 86%)
-}
+} */
 
 /* have rails appear for larger devices so that content and inputs don't get too wide */
 body, nav, footer {
     max-width: 1240px;
     margin-left: auto;
     margin-right: auto;
+}
+
+a .fa-github {
+    color: var(--color-secondary-supporting-purple);
 }
 
 /* main-content height fills page */
@@ -161,9 +231,16 @@ a.is-disabled {
 .footer {
     display: block;
     flex-direction: unset;
-    font-size: 1rem;
+    font-size: 0.7rem;
     line-height: 1.75;
     padding: .25em .75em;
+
+    color: var(--color-secondary-supporting-purple);
+    background: var(--color-main-blue);
+    background: linear-gradient(90deg, rgba(33, 98, 149, 1) 0%, rgba(159, 63, 218, 1) 100%);
+    box-shadow: var(--box-shadow);
+    border-radius: 0 0 var(--box-radius) var(--box-radius);
+    margin-top: 3%;
 }
 
 /* footer spacing */
@@ -189,7 +266,7 @@ footer p {
 /* TABLET STYLES */
 @media screen and (min-width: 768px) {
      /* size links and headers */
-    h1, h2, h3, h4, h5, h6, a.navbar-brand, a.nav-link {
+    h1, h2, h3, h4, h5, h6 {
         font-size: 31px;
     }
 
