@@ -122,6 +122,9 @@ button, input, select, textarea, a.btn, input.btn {
     font-weight: 500;
     line-height: 24px;
     padding: .375rem .25rem;
+
+    box-shadow: var(--box-shadow);
+    box-radius: var(--box-radius);
 }
 
 input[type=file] {
@@ -208,9 +211,16 @@ a.is-disabled {
 .footer {
     display: block;
     flex-direction: unset;
-    font-size: 1rem;
+    font-size: 0.7rem;
     line-height: 1.75;
     padding: .25em .75em;
+
+    color: var(--color-secondary-supporting-purple);
+    background: var(--color-main-blue);
+    background: linear-gradient(90deg, rgba(33,98,149,1) 0%, rgba(159,63,218,1) 100%);
+    box-shadow: var(--box-shadow);
+    border-radius:  0 0 var(--box-radius) var(--box-radius);
+    margin-top: 3%;
 }
 
 /* footer spacing */
