@@ -8,12 +8,11 @@
 Files stored in /static folders are hosted by AWS. if you make a change
 you may not see it. 
 
-If you are actively working on CSS or JS update the settings.py file to use:
-```STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"```
-**Don't check in this change** Revert it back to 
-```STATICFILES_STORAGE = "custom_storages.StaticStorage"```
-then run 
-```python manage.py collectstatic```
+If you are actively working on CSS or JS, to get your changes loaded to AWS you must run the following command:
+
+```python manage.py collectstatic --settings ci_hackathon_july_2020.settings_collect_static```
+
+
 so that changes will be collected to AWS. This way the deployment in heroku will then have access to the updates.
 
 ## Local Environment
