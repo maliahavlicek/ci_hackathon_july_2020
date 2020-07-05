@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static tz bootstrap_tags crispy_forms_tags %}
+{% block page_title %}
+    {# Put page specific HTML Title Here #}
+    Create Family
+{% endblock %}
+{% block head_css %}
+    {# Put page specific CSS style links here. Ok to be empty. #}
+{% endblock %}
+{% block head_js %}
+    {# Put page specific javascript tags here. Ok to be empty. #}
+{% endblock %}
+{% block page_heading %}
+    {# Put page specific javascript tags here. Ok to be empty. #}
+    Create Family
+{% endblock %}
+{% block main_content %}
+    {# Put main content here. SHOULD NOT BE EMPTY. #}
+    {% localtime on %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form |as_bootstrap }}
+            <button class="btn btn-default">CREATE FAMILY</button>
+        </form>
+    {% endlocaltime %}
+
+{% endblock %}
