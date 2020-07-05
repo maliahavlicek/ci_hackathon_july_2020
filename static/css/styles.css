@@ -43,6 +43,16 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
 }
 
+a {
+    color: var(--color-main-blue);
+}
+
+#submit-id-submit {
+    padding: 6px 15px;
+    background-color: var(--color-main-blue);
+    margin: 3% 0;
+}
+
 h1 {
     text-transform: uppercase;
     font-family: var(--heading-font-family);
