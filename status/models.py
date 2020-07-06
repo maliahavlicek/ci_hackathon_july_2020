@@ -10,12 +10,12 @@ class Status(models.Model):
     mood = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True, blank=True)
     plans = models.TextField(max_length=250, default="Nothing")
     help = models.TextField(max_length=250, default="Nothing")
-    owner = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    owner = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "{0} by {1}".format(self.mood, self.user)
+        return "{0} by {1}".format(self.mood, self.owner)
 
 
 class StatusInput(models.Model):
