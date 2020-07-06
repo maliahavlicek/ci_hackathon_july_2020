@@ -75,9 +75,11 @@ def default_wall(request):
 
     if family:
         posts = Post.objects.filter(family=family.pk).order_by('-datetime')[:30]
+        families = list(Family.objects.filter(members=user))
         if not posts:
             posts = []
-        return render(request, "walls/wall.html", {"family": family, "user": user, "posts": posts})
+        return render(request, "walls/wall.html",
+                      {"family": family, "user": user, "posts": posts, "families": families})
     else:
         messages.success(request, "You do not belong to any families yet, please create one.")
         return redirect(reverse('create_family'))
@@ -95,10 +97,12 @@ def wall(request, id):
         messages.warning(request, "I'm sorry, you do not belong to the family selected.")
 
     if family:
+        families = list(Family.objects.filter(members=user))
         posts = Post.objects.filter(family=family.pk).order_by('-datetime')[:30]
         if not posts:
             posts = []
-        return render(request, "walls/wall.html", {"family": family, "user": user, "posts": posts})
+        return render(request, "walls/wall.html",
+                      {"family": family, "user": user, "posts": posts, "families": families})
     else:
         messages.success(request, "You do not belong to any families yet, please create one.")
         return redirect(reverse('create_family'))
