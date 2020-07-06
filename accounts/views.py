@@ -110,7 +110,7 @@ def create_family(request):
     Create Family page
     """
     user = request.user
-    form = CreateFamilyForm(initial={'members': [user.email]})
+    form = CreateFamilyForm()
     if request.method == 'POST':
         form = CreateFamilyForm(request.POST, request.FILES)
         if 'cancel' in request.POST:
@@ -123,6 +123,7 @@ def create_family(request):
             family.save()
             try:
                 members = json.loads(form.data['members'])
+                members.append({'email': user.email})
             except:
                 members = [{'email': user.email}]
             member_status = []

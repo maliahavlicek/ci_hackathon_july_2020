@@ -6,6 +6,7 @@
 {% endblock %}
 {% block head_css %}
     {# Put page specific CSS style links here. Ok to be empty. #}
+    <link rel="stylesheet" href="{% static 'css/members.css' %}" type="text/css">
 {% endblock %}
 {% block head_js %}
     {# Put page specific javascript tags here. Ok to be empty. #}
@@ -20,11 +21,20 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form |as_bootstrap }}
+            {# restrict number of family members to 100 to prevent bots killing site #}
+            <input type="hidden" id="max_members" value="30">
 
             <div class="form-group col-md-12 mb-0 p-0">
                 <label>Members</label>
+                {# placeholder for user creating family to know they don't have to add themselves #}
+                <div id="member-row-test1@test.com" class="row member-row">
+                    <div class="col-9">
+                        <div id="default_member" class="member">{{ request.user.email }}</div>
+                        <input type="hidden" id="id_user" value="{{ request.user.email }}"/>
+                    </div>
+                </div>
                 <div id="member_list">
-
+                    {# javascript will automatically fill this in as user interacts with form #}
                 </div>
             </div>
 
@@ -54,5 +64,5 @@
             <button class="btn btn-default">CREATE FAMILY</button>
         </form>
     {% endlocaltime %}
-
+    <script type="text/javascript" src="{% static 'js/members.js' %}"></script>
 {% endblock %}
