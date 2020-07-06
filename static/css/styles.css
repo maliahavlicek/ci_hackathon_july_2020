@@ -95,7 +95,7 @@ h1 {
     background: var(--color-main-blue);
     background: linear-gradient(90deg, rgba(33,98,149,1) 0%, rgba(159,63,218,1) 100%);
     box-shadow: var(--box-shadow);
-    border-radius: 0 0 var(--box-radius) var(--box-radius);
+    border-radius: var(--box-radius) var(--box-radius) 0 0;
     margin-bottom: 3%;
 }
 
