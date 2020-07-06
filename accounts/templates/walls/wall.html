@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}
+    {# Put page specific HTML Title Here #}
+    Family Wall
+{% endblock %}
+{% block head_css %}
+    {# Put page specific CSS style links here. Ok to be empty. #}
+{% endblock %}
+{% block head_js %}
+    {# Put page specific javascript tags here. Ok to be empty. #}
+{% endblock %}
+{% block page_heading %}
+    {# Put page specific javascript tags here. Ok to be empty. #}
+    {{ family.family_name|capfirst }} Dashboard
+{% endblock %}
+{% block main_content %}
+    {# Put main content here. SHOULD NOT BE EMPTY. #}
+    <div class="row">
+        <div class="left col-md-4">
+            {% if families|length > 1 %}
+                <div class="form-group">
+                    <label for="switch_family">Change Family Wall</label>
+                    <select id="switch_family">
+                        {% for fam in families %}
+                            <option value="{{ fam.pk }}" {% if fam.pk == family.pk %}
+                                    selected{% endif %}>{{ fam|upper }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% for member in family.get_members %}
+                <div>Family Member: {{ member.email }}</div>
+                <div>Profile Picture: <img src="{{ member.user_profile.profile_picture.url }}"
+                                           alt="Profile Image for {{ member }}"></div>
+
+            {% endfor %}
+        </div>
+
+
+        <div class="right col-md-8">
+            <div class="row">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ family.hero_image.url }}"
+                         alt="hero image for {{ family.family_name }}"/>
+                </div>
+            </div>
+            {% for post in post %}
+                {% if loopcounter == 1 %}
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="{% url 'add_post' id=family.pk %}" class="btn-primary"><i class="fa fa-plus"></i>Add
+                                Post</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="{% url 'add_image' id=family.pk %}" class="btn-primary"><i class="fa fa-plus"></i>Share
+                                Image</a>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="row">
+                    {{ post }}
+                </div>
+            {% empty %}
+                There are no posts on the wall yet. Be the first to get things started!
+            {% endfor %}
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="{% url 'add_post' id=family.pk %}" class="btn-primary"><i class="fa fa-plus"></i>Add
+                        Post</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{% url 'add_image' id=family.pk %}" class="btn-primary"><i class="fa fa-plus"></i>Share
+                        Image</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/wall.js' %}"></script>
+
+{% endblock %}

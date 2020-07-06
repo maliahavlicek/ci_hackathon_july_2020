@@ -10,7 +10,6 @@
 {% block main_content %}
     <p>If you already have an account, you can <a href="{% url 'login' %}">sign in</a>.</p>
     <form method="POST" novalidate>
-        {% csrf_token %}
         {% crispy registration_form %}
     </form>
 {% endblock %}

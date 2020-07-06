@@ -12,12 +12,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from os import environ
+import dj_database_url
 from django.contrib.messages import constants as messages
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.path.exists('env.py'):
-    import env
-    # can override local to False here if you want to test things like 404, 500 error
+    import env  # noqa: F401
+    """
+    can override local to False here if you want to
+    test things like 404, 500 error
+    """
     DEBUG = True
 else:
     DEBUG = False
@@ -32,7 +36,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = [os.environ.get('HOSTNAME'), "localhost", "127.0.0.1", "adv-b-wall.herokuapp.com"]
-DEFAULT_DOMAIN = 'https://{}'.format(ALLOWED_HOSTS[0])
+DEFAULT_DOMAIN = 'https://adv-b-wall.herokuapp.com'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,10 +49,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'crispy_forms',
-    "django_nose",
-    'accounts',
+    'django_nose',
+    'home',
     'storages',
+    'users',
+    'accounts',
+    'posts',
 ]
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -66,8 +75,7 @@ ROOT_URLCONF = 'ci_hackathon_july_2020.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,34 +91,42 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ci_hackathon_july_2020.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'TEST': {
+                'NAME': 'mytestdatabase',
+            },
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+AUTH_USER_MODEL = 'users.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+  },
+  {
+    'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+  },
+  {
+    'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+  },
+  {
+    'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+  },
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -143,7 +159,8 @@ AWS_STORAGE_BUCKET_NAME = 'ci-hackathon-july-2020'
 AWS_S3_REGION_NAME = 'us-east-2'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME)
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
+    AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME)
 
 STATICFILES_LOCATION = 'static'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
@@ -161,18 +178,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-
-
-
-
 # SMTP Email configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'what2do2day0@gmail.com'
+EMAIL_HOST_USER = environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = environ.get('EMAIL_PASS')
-
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -181,3 +193,8 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+if DEBUG:
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+else:
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'

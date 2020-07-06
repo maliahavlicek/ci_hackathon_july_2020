@@ -17,13 +17,24 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
             {% if user.is_authenticated %}
-                <li><a class="dropdown-item nav-link" id="logout" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout</a>
+
+                <li>
+                    <a class="dropdown-item nav-link" id="logout" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout</a>
                 </li>
+                <Li>
+                    <a class="dropdown-item nav-link" href="{% url 'default_wall' %}"><i class="fa fa-sign-out"></i>Wall</a>
+                </Li>
+                <Li>
+                    <a class="dropdown-item nav-link" href="{% url 'create_family' %}"><i class="fa fa-sign-out"></i>Create
+                        Family</a>
+                </Li>
 
             {% else %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i>Login</a>
+                <li class="nav-item"><a class="dropdown-item nav-link" href="{% url 'login' %}"><i
+                        class="fa fa-sign-in"></i>Login</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}"><i class="fa fa-user-plus"></i>Register</a>
+                <li class="nav-item"><a class="dropdown-item nav-link" href="{% url 'registration' %}"><i
+                        class="fa fa-user-plus"></i>Register</a>
                 </li>
             {% endif %}
 
