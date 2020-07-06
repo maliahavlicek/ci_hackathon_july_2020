@@ -17,8 +17,9 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
             {% if user.is_authenticated %}
+
                 <li>
-                    <a class="dropdown-item nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout</a>
+                    <a class="dropdown-item nav-link" id="logout" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout</a>
                 </li>
                 <Li>
                     <a class="dropdown-item nav-link" href="{% url 'default_wall' %}"><i class="fa fa-sign-out"></i>Wall</a>

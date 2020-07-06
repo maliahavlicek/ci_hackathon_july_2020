@@ -35,9 +35,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-ALLOWED_HOSTS = [os.environ.get(
-    'HOSTNAME'), "127.0.0.1", "adv-b-wall.herokuapp.com", "localhost", ]
+ALLOWED_HOSTS = [os.environ.get('HOSTNAME'), "localhost", "127.0.0.1", "adv-b-wall.herokuapp.com"]
 DEFAULT_DOMAIN = 'https://adv-b-wall.herokuapp.com'
+
 # Application definition
 
 INSTALLED_APPS = [
