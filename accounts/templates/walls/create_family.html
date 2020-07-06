@@ -22,7 +22,7 @@
             {% csrf_token %}
             {{ form |as_bootstrap }}
             {# restrict number of family members to 100 to prevent bots killing site #}
-            <input type="hidden" id="max_members" value="30">
+            <input type="hidden" id="max_members" value="100">
 
             <div class="form-group col-md-12 mb-0 p-0">
                 <label>Members</label>
