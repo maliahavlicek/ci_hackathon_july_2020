@@ -2,9 +2,8 @@
 /ratings URL Configuration
 """
 from django.urls import path
-from .views import send_status, get_all_status
+from .views import SendStatus
 
 urlpatterns = [
-    path('send_status', send_status, name='send_status'),
-    path('get_all_status', get_all_status, name='get_all_status'),
+    path('send_status/', SendStatus.as_view(), name='send_status'),
 ]

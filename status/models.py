@@ -26,6 +26,7 @@ class StatusInput(models.Model):
     plans = models.TextField(max_length=250, default="Nothing")
     help = models.TextField(max_length=250, default="Nothing")
     user_id = models.PositiveIntegerField()
+    family_id = models.PositiveIntegerField()
 
     def __str__(self):
         return str(self.mood)

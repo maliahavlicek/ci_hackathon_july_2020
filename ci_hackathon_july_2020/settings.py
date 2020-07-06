@@ -48,10 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
+
     'crispy_forms',
     'django_nose',
-    'home',
+    "rest_framework",
     'storages',
+
+    'home',
     'users',
     'accounts',
     'posts',
@@ -92,10 +95,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ci_hackathon_july_2020.wsgi.application'
 
+REST_FRAMEWORK = {
+    "DEFAULT_THROTTLE_CLASSES": ["rest_framework.throttling.ScopedRateThrottle", ],
+    "DEFAULT_THROTTLE_RATES": {
+        "send_status": "60/day",
+        "get_status": "60/hour",
+    },
+}
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
