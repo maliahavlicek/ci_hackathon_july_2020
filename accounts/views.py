@@ -12,6 +12,7 @@ from posts.models import Post
 from ci_hackathon_july_2020.settings import EMAIL_HOST_USER, DEFAULT_DOMAIN
 from django.core.mail import EmailMultiAlternatives, EmailMessage
 import logging
+from status.forms import MOOD_CHOICES
 
 log = logging.getLogger(__name__)
 
@@ -86,7 +87,8 @@ def default_wall(request):
         if not posts:
             posts = []
         return render(request, "walls/wall.html",
-                      {"family": family, "user": user, "posts": posts, "families": families})
+                      {"family": family, "user": user, "posts": posts, "families": families,
+                       "mood_choices": MOOD_CHOICES})
     else:
         messages.success(request, "You do not belong to any families yet, please create one.")
         return redirect(reverse('create_family'))
@@ -109,7 +111,8 @@ def wall(request, id):
         if not posts:
             posts = []
         return render(request, "walls/wall.html",
-                      {"family": family, "user": user, "posts": posts, "families": families})
+                      {"family": family, "user": user, "posts": posts, "families": families,
+                       "mood_choices": MOOD_CHOICES})
     else:
         messages.success(request, "You do not belong to any families yet, please create one.")
         return redirect(reverse('create_family'))

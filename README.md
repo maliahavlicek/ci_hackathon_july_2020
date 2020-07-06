@@ -75,6 +75,7 @@ so that changes will be collected to AWS. This way the deployment in heroku will
 
 ### After Initial Setup
 1. Pull or fetch data from branch or master
+1. ```pip install -r ./requirements.txt```
 1. ```python manage.py makemigrations``` 
 1. ```python manage.py migrate```
 
