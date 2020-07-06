@@ -1,0 +1,9 @@
+.member {
+    padding: .5rem .5rem 0;
+    border-bottom: 1px solid gray;
+    margin: .4rem 0;
+}
+
+#default_member {
+    margin-top: 0;
+}
