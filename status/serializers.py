@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import StatusInput, AllStatusInput
+from .models import StatusInput, AllStatusInput, Status
+from users.models import User
 
 
 class StatusInputSerializer(serializers.ModelSerializer):
@@ -18,15 +19,15 @@ class AllStatusInputSerializer(serializers.ModelSerializer):
     """
 
     class Meta:
-        model = StatusInput
+        model = AllStatusInput
         fields = '__all__'
 
 
-class AllStatusOutputSerializer(serializers.ModelSerializer):
+class StatusSerializer(serializers.ModelSerializer):
     """
-    package up all statuses for rest_framework ajax transport
+    Package up status for rest_framework ajax transport
     """
 
     class Meta:
-        model = StatusInput
-        fields = '__all__'
+        model = Status
+        fields = ['mood', 'plans', 'help', 'updated_date']

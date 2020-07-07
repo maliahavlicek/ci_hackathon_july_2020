@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// Submit logged in user's updated status to server
 function update_status() {
     // make sure button isn't disabled because of throttling
     let button = document.getElementById('update-status-submit');
@@ -60,7 +61,6 @@ function update_status() {
 
     //get family_id
     let family = document.getElementById('id_family').value;
-
 
     //get the CSRF_TOKEN
     let csrftoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
@@ -114,3 +114,78 @@ function update_status() {
         });
 
 }
+
+
+// Look for updated Statuses every 2 minutes: 120000 miliseconds
+let timer = 12000;
+setTimeout(get_all_statuses, timer);
+
+// request current family member status from server
+function get_all_statuses() {
+    //get user_id
+    let user = document.getElementById('id_user').value;
+
+    //get family_id
+    let family = document.getElementById('id_family').value;
+
+    //get the CSRF_TOKEN
+    let csrftoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+    // send request to update status
+    let url = '/status/get_status/';
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({
+            'user_id': user,
+            'family_id': family,
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+                // See if errors coming back
+                if ('errors' in data) {
+                    //have an error,
+                    for (let key in data.errors) {
+                        document.querySelector('#id_' + key + '_error').innerHTML = data.errors[key][0];
+                        document.querySelector('#' + key).classList.add('has-error');
+                    }
+
+                } else if ('message' in data) {
+                    // means we have someone flooding the system just do nothing and don't update
+                    if (data['message'] === 'rate limit exceeded') {
+                    }
+                } else {
+                    // success from get_status API request
+                    let el = document.getElementById("family-status");
+
+                    // make sure response is for current family wall
+                    if (family === data.id) {
+
+                        // Loop through results and rebuild Status of Current Wall.
+                        for (let i in data.members) {
+                            //don't update current user, only other members
+                            if (data.members[i].id !== user_id) {
+                                // update status id="mood_{{ member.id }}"
+
+                                // update plan id="plan_{{ member.id }}"
+
+                                // update help
+
+                            }
+                        }
+                    }
+
+                }
+            }
+        )
+        .catch((error) => {
+            console.log('Got an error')
+        });
+    // set up next interval
+    //setTimeout(get_all_statuses, timer);
+
+}
+

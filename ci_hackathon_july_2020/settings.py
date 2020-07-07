@@ -99,7 +99,7 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_CLASSES": ["rest_framework.throttling.ScopedRateThrottle", ],
     "DEFAULT_THROTTLE_RATES": {
         "send_status": "60/day",
-        "get_status": "60/hour",
+        "get_status": "100/hour",
     },
 }
 

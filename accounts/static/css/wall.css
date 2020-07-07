@@ -3,3 +3,12 @@
     height: 60px;
     border-radius: 50%;
 }
+
+/* hide show status based on 24s freshness */
+.status.inactive .active {
+    display: none;
+}
+
+.status.active .inactive {
+    display: none;
+}
