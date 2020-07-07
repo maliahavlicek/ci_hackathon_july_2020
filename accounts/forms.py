@@ -107,8 +107,11 @@ class ProfileForm(ModelForm):
     """
     class Meta:
         model = User
-        fields = '__all__'
-        exclude = ['user']
+        fields = [
+          'first_name',
+          'last_name',
+          'email',
+        ]
 
 
 class CreateFamilyForm(forms.Form):

@@ -247,9 +247,11 @@ def initial_email(members, family):
 @login_required
 def userprofile(request):
     """
-    Return the userprofile.html file
+    Profile settings for the user,
+    to change/update their own profile.
     """
-    form = ProfileForm()
+    user = request.user
+    form = ProfileForm(instance=user)
 
     context = {'form': form}
     return render(request, 'userprofile.html', context)
