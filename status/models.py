@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from users.models import User
+from accounts.models import Family
 
 MOOD_CHOICES = [(1, 'amazing'), (2, 'happy'), (3, 'good'), (4, 'sad'), (5, 'terrible')]
 
@@ -39,12 +40,10 @@ class AllStatusInput(models.Model):
     """
     Model to help serialize User Mood Objects when updating family wall on timer, should never actually create a DB instance of this object
     """
-    mood = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True, blank=True)
-    plans = models.TextField(max_length=250)
-    help = models.TextField(max_length=250)
     user_id = models.PositiveIntegerField()
-    updated_date = models.DateTimeField()
     family_id = models.PositiveIntegerField()
 
     def __str__(self):
-        return str(self.mood)
+        family = Family.objects.get(id=self.family_id)
+        user = User.objects.get(id=self.user_id)
+        return "{0} - {1}".format(family, user)
