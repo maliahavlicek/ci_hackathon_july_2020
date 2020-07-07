@@ -13,4 +13,3 @@ urlpatterns = [
     path('wall/', default_wall, name='default_wall'),
     path('get_family/<str:id>/', wall, name='wall'),
 ]
-

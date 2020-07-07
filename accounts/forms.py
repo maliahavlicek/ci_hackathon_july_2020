@@ -1,9 +1,11 @@
 from django import forms
+from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Family
+from users.models import UserProfile
 from django.template.defaultfilters import filesizeformat
 
 
@@ -12,7 +14,9 @@ class UserLoginForm(forms.Form):
     email = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Email'
     }))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'placeholder': 'Password'}
+    ))
     next = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -56,7 +60,9 @@ class UserRegistrationFrom(UserCreationForm):
         # Make sure email isn't already in system
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).count() > 0:
-            self.add_error('email', 'That email address is already registered.')
+            self.add_error(
+                'email', 'That email address is already registered.')
+        # NOTE: assigned but never used?
         password1 = self.cleaned_data.get('password1')
 
     def clean_password2(self):
@@ -69,7 +75,8 @@ class UserRegistrationFrom(UserCreationForm):
 
         email = self.cleaned_data.get('email')
         if email in password2:
-            raise forms.ValidationError('Your email cannot be part of your password.')
+            raise forms.ValidationError(
+                'Your email cannot be part of your password.')
 
         return password2
 
@@ -93,11 +100,23 @@ class UserRegistrationFrom(UserCreationForm):
         )
 
 
+class ProfileForm(ModelForm):
+    """
+    A user edit profile form.
+    'user' is excluded to probhit username edditing.
+    """
+    class Meta:
+        model = User
+        fields = '__all__'
+        exclude = ['user']
+
+
 class CreateFamilyForm(forms.Form):
     """
     Form to Create A Family
     """
-    family_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
+    family_name = forms.CharField(
+        widget=forms.TextInput(attrs={"class": "form-control"}))
     hero_image = forms.ImageField(label="Hero Image")
     members = forms.CharField(widget=forms.HiddenInput(), required=False)
 
@@ -115,5 +134,9 @@ class CreateFamilyForm(forms.Form):
             # limit images to 10 MB
             size_limit = 10485760
             if image_file.size > size_limit:
-                self.add_error('hero_image', 'Please keep file size under %s. Current size %s' % (
-                    filesizeformat(size_limit), filesizeformat(image_file.size)))
+                self.add_error(
+                    'hero_image',
+                    'Please keep file size under %s. Current size %s' %
+                    (filesizeformat(size_limit),
+                     filesizeformat(image_file.size))
+                )

@@ -1,1 +1,18 @@
-USERPROFILE
+{# User Profile #}
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+    User profile
+{% endblock %}
+
+{% block page_heading %}
+    User profile
+{% endblock %}
+
+{% block main_content %}
+  <form method="POST" action="" enctype="uniForm">
+  {% csrf_token %}
+    {{ form|crispy }}
+  </form>
+{% endblock %}
