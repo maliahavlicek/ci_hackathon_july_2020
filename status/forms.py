@@ -1,7 +1,5 @@
 from django import forms
-from .models import StatusInput
-
-MOOD_CHOICES = [('1', 'amazing'), ('2', 'happy'), ('3', 'good'), ('4', 'sad'), ('5', 'terrible')]
+from .models import StatusInput, MOOD_CHOICES
 
 
 class CreateStatusForm(forms.Form):

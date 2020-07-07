@@ -2,12 +2,15 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from users.models import User
 
+MOOD_CHOICES = [(1, 'amazing'), (2, 'happy'), (3, 'good'), (4, 'sad'), (5, 'terrible')]
+
 
 class Status(models.Model):
     """
     Model to hold Member Status, is an extension of User through one 2 one relationship
     """
-    mood = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True, blank=True)
+    mood = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], choices=MOOD_CHOICES,
+                                       null=True, blank=True)
     plans = models.TextField(max_length=250, default="Nothing")
     help = models.TextField(max_length=250, default="Nothing")
     owner = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)

@@ -4,9 +4,10 @@ from .models import Status
 
 class StatusAdmin(admin.ModelAdmin):
     list_display = (
+        'owner',
         'mood',
         'plans',
-        'help'
+        'help',
     )
 
 

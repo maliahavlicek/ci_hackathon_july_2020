@@ -15,7 +15,7 @@
                         <label for="id_mood_{{ choice.0 }}">{{ choice.1 }}</label>
                         <input type="radio" name="mood" class="mood level-{{ choice.0 }}" id="id_mood_{{ choice.0 }}"
                                value="{{ choice.0 }}" {% if request.user.status.mood == choice.0 %}
-                               selected {% endif %}>
+                               checked {% endif %}>
                     {% endfor %}
                 </div>
             </div>
