@@ -244,6 +244,7 @@ def initial_email(members, family):
     return True
 
 
+@login_required
 def userprofile(request):
     """
     Return the userprofile.html file
