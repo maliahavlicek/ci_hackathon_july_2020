@@ -1,9 +1,13 @@
 // document ready, add listeners
 document.addEventListener("DOMContentLoaded", () => {
     // handler for switch family dropdown
-    document.getElementById('switch_family').addEventListener("change", (e) => {
-        window.location = "/accounts/get_family/" + e.target.value;
-    });
+    try {
+        document.getElementById('switch_family').addEventListener("change", (e) => {
+            window.location = "/accounts/get_family/" + e.target.value;
+        });
+    } catch (e) {
+        // do nothing, just means 1 family for the user if not found
+    }
 
     // add a listener to update_status form submit button
     let from = document.getElementById('update_status');
@@ -162,17 +166,22 @@ function get_all_statuses() {
                     let el = document.getElementById("family-status");
 
                     // make sure response is for current family wall
-                    if (family === data.id) {
+                    if (family === data.id.toLocaleString()) {
 
                         // Loop through results and rebuild Status of Current Wall.
                         for (let i in data.members) {
                             //don't update current user, only other members
-                            if (data.members[i].id !== user_id) {
+                            if (data.members[i].id !== user.toLocaleString()) {
+                                let item = data.members[i];
+                                let id = item.id;
                                 // update status id="mood_{{ member.id }}"
+                                document.getElementById('mood_' + id).innerHTML = item.status.mood;
 
                                 // update plan id="plan_{{ member.id }}"
+                                document.getElementById('plan_' + id).innerHTML = item.status.plans;
 
                                 // update help
+                                document.getElementById('help_' + id).innerHTML = item.status.help;
 
                             }
                         }
@@ -185,7 +194,7 @@ function get_all_statuses() {
             console.log('Got an error')
         });
     // set up next interval
-    //setTimeout(get_all_statuses, timer);
+    setTimeout(get_all_statuses, timer);
 
 }
 
