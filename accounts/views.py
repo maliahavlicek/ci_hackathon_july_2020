@@ -253,5 +253,14 @@ def userprofile(request):
     user = request.user
     form = ProfileForm(instance=user)
 
-    context = {'form': form}
-    return render(request, 'userprofile.html', context)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+
+            messages.info(request, 'Profile updated successfully')
+            context = {'form': form}
+            return render(request, 'userprofile.html', context)
+    else:
+        context = {'form': form}
+        return render(request, 'userprofile.html', context)
