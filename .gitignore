@@ -12,6 +12,7 @@ __pycache__
 
 # Exclude VScode created def folders
 .vscode
+.theia
 env.py
 env
 
