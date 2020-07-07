@@ -230,3 +230,7 @@ def initial_email(members, family):
         log.warning(f"WARNING: STMPResponseException: ", error_code, error_message)
 
     return True
+
+def userprofile(request):
+    """Return the userprofile.html file"""
+    return render(request, 'userprofile.html')
