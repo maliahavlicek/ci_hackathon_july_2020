@@ -59,9 +59,9 @@ function member_list() {
                     <div class="form-group col-9 mb-0">
                       <div class="member">${list[i].email}</div>
                     </div>            
-                    <div class="form-group col-3 mb-0">
+                    <div class="form-group col-3 mb-0 p-0 pr-2">
                       <div class="form-group">
-                         <a onclick="remove('${list[i].email}');" class="form-control btn btn-primary"><i class="fas fa-user-times"></i> Remove</a>
+                         <a onclick="remove('${list[i].email}');" class="form-control btn btn-primary"><i class="fas fa-user-times"></i> Del</a>
                       </div>
                     </div>
                 </div>
