@@ -12,6 +12,7 @@
                 <label for="id_mood" class="label">I'm Feeling</label>
                 <div>
                     {% for choice in mood_choices %}
+                        <div class="mood-image_{{ choice.1 }}" aria-label="{{ choice.1 }}"></div>
                         <label for="id_mood_{{ choice.0 }}">{{ choice.1 }}</label>
                         <input type="radio" name="mood" class="mood level-{{ choice.0 }}" id="id_mood_{{ choice.0 }}"
                                value="{{ choice.0 }}" {% if request.user.status.mood == choice.0 %}

@@ -12,3 +12,16 @@
 .status.active .inactive {
     display: none;
 }
+
+#family-wall-h1 {
+    text-align: center;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+.hero-family-image {
+    box-shadow: var(--box-shadow);
+    border-radius: var(--box-radius);
+    margin: 2% auto;
+    max-width: 200px;
+}
