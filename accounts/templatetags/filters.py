@@ -22,3 +22,8 @@ def hours_ago(time, hours):
         return False
     else:
         return True
+
+
+@register.filter(name='fifty_minus')
+def fifty_minus(list):
+    return 50 - list

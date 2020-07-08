@@ -198,7 +198,8 @@ def update_family(request, id):
     initial = {
         "family_name": family.family_name,
         "hero_image": family.hero_image.file,
-        "members": orig_members,
+        "members": [],
+        "orig_members": orig_members,
     }
     # hero image is required, but when updating, it's not going to be in the form unless user is changing it out, restore to original if not in request
     if family.hero_image and 'hero_image' not in request.FILES.keys() and family.hero_image.file:
@@ -206,6 +207,12 @@ def update_family(request, id):
         initial['hero_image'] = family.hero_image.file
     form = CreateFamilyForm(initial=initial)
     if request.method == 'POST':
+        if 'leave' in request.POST:
+            family.members.remove(request.user)
+            # let user know the they left the family
+            messages.success(request,
+                             "Your have left the" + family.family_name.title() + " family.")
+            return redirect('default_wall')
         form = CreateFamilyForm(request.POST, request.FILES)
         if 'cancel' in request.POST:
             return redirect(reverse('default_wall'))
@@ -226,7 +233,6 @@ def update_family(request, id):
             except:
                 members = [{'email': user.email}]
 
-            removed_family_members = []
             new_to_family_members = []
 
             for member in members:
@@ -257,18 +263,9 @@ def update_family(request, id):
                         'user': user1.pk,
                         'status': 'next',
                     })
-            # now need to check if any members were dropped
-            for old_member in member_data:
-                if not any(d['email'] == old_member['email'] for d in members):
-                    user1 = User.objects.filter(email=old_member['email']).first()
-                    removed_family_members.append(
-                        user1.email
-                    )
-                    family.members.remove(user1.pk)
+
             # send emails to new family members
             initial_email(new_to_family_members, family)
-            # send emails to removed family members
-            delete_email(removed_family_members, family)
 
             # let user know the challenge was created
             messages.success(request,
