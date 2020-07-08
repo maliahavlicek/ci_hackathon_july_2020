@@ -9,7 +9,7 @@
         <div class="col-10">
             <div class="form-group" id="id_mood">
                 <div class="field-error" id="id_mood_error"></div>
-                <label for="id_mood" class="label">I'm Feeling</label>
+                <label for="id_mood" class="label label-title">I'm Feeling</label>
                 <div>
                     {% for choice in mood_choices %}
                         <div class="mood-image_{{ choice.1 }}" aria-label="{{ choice.1 }}"></div>
@@ -24,7 +24,7 @@
         <div class="col-12">
             <div class="form-group" id="plans">
                 <div class="field-error" id="id_plans_error"></div>
-                <label for="id_plans" class="label">Today I Plan To Do</label>
+                <label for="id_plans" class="label label-title">Today I Plan To Do</label>
                 <textarea name="plans" cols="30" rows="2" class="form-control textarea"
                           id="id_plans" spellcheck="false">{{ request.user.status.plans|default:"Nothing" }}</textarea>
             </div>
@@ -32,7 +32,7 @@
         <div class="col-12">
             <div class="form-group" id="help">
                 <div class="field-error" id="id_plans_error"></div>
-                <label for="id_help" class="label">I Need Help With</label>
+                <label for="id_help" class="label label-title">I Need Help With</label>
                 <textarea name="plans" cols="30" rows="2" class="form-control textarea"
                           id="id_help" spellcheck="false">{{ request.user.status.help|default:"Nothing" }}</textarea>
             </div>

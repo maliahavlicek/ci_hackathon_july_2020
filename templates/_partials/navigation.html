@@ -22,18 +22,18 @@
                     <a class="dropdown-item nav-link" id="logout" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout</a>
                 </li>
                 <Li>
-                    <a class="dropdown-item nav-link" href="{% url 'default_wall' %}"><i class="fa fa-sign-out"></i>Wall</a>
+                    <a class="dropdown-item nav-link" id="wall" href="{% url 'default_wall' %}"><i class="fa fa-sign-out"></i>Wall</a>
                 </Li>
                 <Li>
-                    <a class="dropdown-item nav-link" href="{% url 'create_family' %}"><i class="fa fa-sign-out"></i>Create
+                    <a class="dropdown-item nav-link" id="create-family" href="{% url 'create_family' %}"><i class="fa fa-sign-out"></i>Create
                         Family</a>
                 </Li>
 
             {% else %}
-                <li class="nav-item"><a class="dropdown-item nav-link" href="{% url 'login' %}"><i
+                <li class="nav-item"><a class="dropdown-item nav-link" id="login" href="{% url 'login' %}"><i
                         class="fa fa-sign-in"></i>Login</a>
                 </li>
-                <li class="nav-item"><a class="dropdown-item nav-link" href="{% url 'registration' %}"><i
+                <li class="nav-item"><a class="dropdown-item nav-link" id="register" href="{% url 'registration' %}"><i
                         class="fa fa-user-plus"></i>Register</a>
                 </li>
             {% endif %}
