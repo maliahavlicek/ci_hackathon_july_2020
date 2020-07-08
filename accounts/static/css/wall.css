@@ -18,15 +18,28 @@
     text-transform: uppercase;
     background-color: transparent;
     font-size: 25px;
+
+}
+
+.hero_container {
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+    margin: 2% auto;
+    max-height: 150px;
+    display: block;
+    position: relative;
 }
 
 .hero-family-image {
     box-shadow: var(--box-shadow);
     border-radius: var(--box-radius);
-    margin: 2% auto;
-    max-height: 150px;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
-    object-fit: cover;
 }
 
 h4 {
@@ -36,4 +49,35 @@ h4 {
 
 .label-title {
     text-transform: uppercase;
+}
+
+.card-header.status {
+    background: var(--color-main-gradient);
+    padding: 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    text-align: left;
+}
+
+.card-header.status button {
+    background: inherit;
+    border: none;
+    margin: 0;
+    color: var(--color-secondary-supporting-purple);
+    box-shadow: none;
+    outline: none;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: left;
+    padding: .75rem 1.25rem;
+}
+
+.card-header.status button:hover {
+    background: var(--color-secondary-purple);
+    color: var(--color-secondary-supporting-purple);
+}
+
+.mood-image {
+
 }

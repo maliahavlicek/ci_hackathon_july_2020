@@ -25,7 +25,7 @@ if os.path.exists('env.py'):
     DEBUG = True
 else:
     DEBUG = False
-DEBUG = True
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,7 +37,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # ALLOWED_HOSTS = [os.environ.get('HOSTNAME'), "localhost", "127.0.0.1", "adv-b-wall.herokuapp.com"]
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'adv-b-wall.herokuapp.com']
 DEFAULT_DOMAIN = 'https://adv-b-wall.herokuapp.com'
 
 # Application definition
