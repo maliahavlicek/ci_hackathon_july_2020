@@ -129,6 +129,10 @@ h4 {
     margin: 15px 0 10px;
 }
 
+.w-100 {
+    box-shadow: var(--box-shadow);
+    border-radius: var(--box-radius);
+}
 
 .textarea {
     max-height: 150px;
