@@ -1,18 +1,27 @@
 {% extends "base.html" %}
+{% load static tz bootstrap_tags crispy_forms_tags %}
 {% block page_title %}
     {# Put page specific HTML Title Here #}
-    Create Post
+    Create Family
 {% endblock %}
 {% block head_css %}
     {# Put page specific CSS style links here. Ok to be empty. #}
+    <link rel="stylesheet" href="{% static 'css/members.css' %}" type="text/css">
 {% endblock %}
 {% block head_js %}
     {# Put page specific javascript tags here. Ok to be empty. #}
 {% endblock %}
 {% block page_heading %}
     {# Put page specific javascript tags here. Ok to be empty. #}
-    Create Post
+    Create Family
 {% endblock %}
 {% block main_content %}
     {# Put main content here. SHOULD NOT BE EMPTY. #}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form |as_bootstrap }}
+        {# restrict number of family members to 100 to prevent bots killing site #}
+
+        <button class="btn btn-default">CREATE POST</button>
+    </form>
 {% endblock %}

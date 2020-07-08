@@ -27,7 +27,9 @@ class Post(models.Model):
                              on_delete=models.CASCADE)
     family = models.ForeignKey(Family,
                                on_delete=models.CASCADE)
-    status = models.TextField(max_length=250)
+    status = models.TextField(max_length=250,
+                              null=True,
+                              blank=True, )
     react = models.ForeignKey(
         Reaction,
         null=True,
