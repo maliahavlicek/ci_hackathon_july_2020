@@ -185,6 +185,106 @@ def create_family(request):
     return render(request, "walls/create_family.html", {"form": form, })
 
 
+@login_required
+def update_family(request, id):
+    """
+    Update Family page
+    """
+    user = request.user
+    family = Family.objects.get(id=id)
+    if family:
+        # in case user messes with url to try to post to a wall they don't belong to
+        if user not in family.get_members():
+            messages.warning(request, "You do not have permission to edit this family.")
+            return redirect(reverse('wall'))
+    else:
+        # in case user bookmarks a page and db re-indexes or someone else deletes it
+        messages.warning(request, "Sorry the family you want to change does not exist.")
+        return redirect(reverse('wall'))
+
+    member_data = list(family.members.all().values('email'))
+    orig_members = json.dumps(member_data)
+    initial = {
+        "family_name": family.family_name,
+        "hero_image": family.hero_image.file,
+        "members": [],
+        "orig_members": orig_members,
+    }
+    # hero image is required, but when updating, it's not going to be in the form unless user is changing it out, restore to original if not in request
+    if family.hero_image and 'hero_image' not in request.FILES.keys() and family.hero_image.file:
+        request.FILES.appendlist('hero_image', family.hero_image.file)
+        initial['hero_image'] = family.hero_image.file
+    form = CreateFamilyForm(initial=initial)
+    if request.method == 'POST':
+        if 'leave' in request.POST:
+            family.members.remove(request.user)
+            # let user know the they left the family
+            messages.success(request,
+                             "Your have left the" + family.family_name.title() + " family.")
+            return redirect('default_wall')
+        form = CreateFamilyForm(request.POST, request.FILES)
+        if 'cancel' in request.POST:
+            return redirect(reverse('default_wall'))
+        if form.is_valid():
+            change_matrix = {}
+            if family.family_name != form.cleaned_data['family_name']:
+                family.family_name = form.cleaned_data['family_name']
+                change_matrix['family_name'] = True
+            if 'hero_image' in request.FILES:
+                if family.hero_image != request.FILES['hero_image']:
+                    family.hero_image = request.FILES['hero_image']
+                    change_matrix['hero_image'] = True
+            family.save()
+
+            # need to see if members were added, deleted or need to be auto-created and email them accordingly
+            try:
+                members = json.loads(form.data['members'])
+            except:
+                members = [{'email': user.email}]
+
+            new_to_family_members = []
+
+            for member in members:
+                user1 = User.objects.filter(email=member['email']).first()
+                if user1:
+                    user1 = user1
+                    # see if user is in existing member list or new to family
+                    if not any(d['email'] == member['email'] for d in member_data):
+                        status = 'existing'
+                        family.members.add(user1)
+                        new_to_family_members.append({
+                            'user': user1.pk,
+                            'status': 'existing',
+                        })
+                    else:
+                        # user is already in member_data so they don't need an email
+                        pass
+                else:
+                    # create a user
+                    passwd = random_string(4, 4)
+                    user1 = User.objects.create(
+                        email=member['email'],
+                        password=passwd,
+                    )
+
+                    family.members.add(user1)
+                    new_to_family_members.append({
+                        'user': user1.pk,
+                        'status': 'next',
+                    })
+
+            # send emails to new family members
+            initial_email(new_to_family_members, family)
+
+            # let user know the challenge was created
+            messages.success(request,
+                             "Your family: " + family.family_name.title() + " was successfully updated.")
+
+            return redirect('wall', family.pk)
+
+    return render(request, "walls/update_family.html", {"form": form, 'family': family})
+
+
 def initial_email(members, family):
     """
     Send email to users inviting them to the family wall
@@ -214,6 +314,7 @@ def initial_email(members, family):
                     new_subject, new_msg, from_email, to)
                 msg.attach_alternative(new_msg_html, "text/html")
                 msg.send()
+
 
         # Build You've been added to a Challenge Email [status !=new, 'existing']
         subject = "Congrats! You've been added to " + \
@@ -272,3 +373,32 @@ def userprofile(request):
             'form': form,
             'formset': formset
         })
+
+def delete_email(members, family):
+    """
+    Send email to users letting them know they were removed from family
+    """
+    try:
+        from_email = EMAIL_HOST_USER
+        # Build You've been added to a Challenge Email [status !=new, 'existing']
+        subject = "You've been removed from " + family.family_name.title() + " on Family Wall."
+        text_content = 'We regretfully write you today to inform you that you were removed as a family member.'
+        url_msg = "If you feel this was done in error, please reach out to an existing member and ask them to add you back in."
+        text_content += url_msg
+        html_content = '<div style="font-size: 16px; width:100%; margin: 20px;"><p>Hello,</p><p>You\'ve been removed from ' + family.family_name.title() + ' on Family Wall.'
+        html_content += "<p>" + url_msg + "</p>"
+        closing_msg = "Never fear, you can go ahead and create your own wall"
+
+        text_content += "\n\n" + closing_msg
+        html_content += "<p>" + closing_msg + "</p></div>"
+
+        msg = EmailMultiAlternatives(subject, text_content, from_email, members)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+    except SMTPResponseException as e:
+        error_code = e.smtp_code
+        error_message = e.smtp_error
+        log.warning(f"WARNING: STMPResponseException: ", error_code, error_message)
+
+    return True
+

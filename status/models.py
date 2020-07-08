@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from users.models import User
-from accounts.models import Family
 
 MOOD_CHOICES = [(1, 'amazing'), (2, 'happy'), (3, 'good'), (4, 'sad'), (5, 'terrible')]
 
@@ -24,7 +23,9 @@ class Status(models.Model):
 
 class StatusInput(models.Model):
     """
-    Model to help serialize User Mood Object when user posts new mood, should never actually create a DB instance of this object
+    Model to help validate/serialize User Mood Object when user posts new mood
+      Should never actually create a DB instance of this object
+      Initiated from Update button In How you Doing section of Family Wall
     """
     mood = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True, blank=True)
     plans = models.TextField(max_length=250, default="Nothing")
@@ -38,12 +39,13 @@ class StatusInput(models.Model):
 
 class AllStatusInput(models.Model):
     """
-    Model to help serialize User Mood Objects when updating family wall on timer, should never actually create a DB instance of this object
+    Model to serialize/validate get_status incoming request
+     Should never actually create a DB instance of this object
+     Initiated from timer on wall page
     """
     user_id = models.PositiveIntegerField()
     family_id = models.PositiveIntegerField()
 
     def __str__(self):
-        family = Family.objects.get(id=self.family_id)
         user = User.objects.get(id=self.user_id)
-        return "{0} - {1}".format(family, user)
+        return "{0} - {1}".format(self.family_id, user)
