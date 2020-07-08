@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationFrom, CreateFamilyForm
 from accounts.models import Family
 from users.models import User
+from django.forms.formsets import formset_factory
+from .forms import ProfileForm, ProfileImageForm
 import json
 from .password import random_string
 from posts.models import Post
@@ -32,7 +34,8 @@ def login(request):
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
-            user = auth.authenticate(email=request.POST['email'], password=request.POST['password'])
+            user = auth.authenticate(
+                email=request.POST['email'], password=request.POST['password'])
 
             if user:
                 auth.login(user=user, request=request)
@@ -65,7 +68,8 @@ def registration(request):
                 messages.success(request, "You have successfully registered.")
                 return redirect(reverse('index'))
             else:
-                messages.error(request, 'Unable to register your account at this time')
+                messages.error(
+                    request, 'Unable to register your account at this time')
 
     else:
         registration_form = UserRegistrationFrom()
@@ -82,7 +86,8 @@ def default_wall(request):
     family = Family.objects.filter(members=user).first()
 
     if family:
-        posts = Post.objects.filter(family=family.pk).order_by('-datetime')[:30]
+        posts = Post.objects.filter(
+            family=family.pk).order_by('-datetime')[:30]
         families = list(Family.objects.filter(members=user))
         if not posts:
             posts = []
@@ -90,7 +95,8 @@ def default_wall(request):
                       {"family": family, "user": user, "posts": posts, "families": families,
                        "mood_choices": MOOD_CHOICES})
     else:
-        messages.success(request, "You do not belong to any families yet, please create one.")
+        messages.success(
+            request, "You do not belong to any families yet, please create one.")
         return redirect(reverse('create_family'))
 
 
@@ -103,18 +109,21 @@ def wall(request, id):
     family = Family.objects.get(pk=id)
     members = family.get_members()
     if user not in members:
-        messages.warning(request, "I'm sorry, you do not belong to the family selected.")
+        messages.warning(
+            request, "I'm sorry, you do not belong to the family selected.")
 
     if family:
         families = list(Family.objects.filter(members=user))
-        posts = Post.objects.filter(family=family.pk).order_by('-datetime')[:30]
+        posts = Post.objects.filter(
+            family=family.pk).order_by('-datetime')[:30]
         if not posts:
             posts = []
         return render(request, "walls/wall.html",
                       {"family": family, "user": user, "posts": posts, "families": families,
                        "mood_choices": MOOD_CHOICES})
     else:
-        messages.success(request, "You do not belong to any families yet, please create one.")
+        messages.success(
+            request, "You do not belong to any families yet, please create one.")
         return redirect(reverse('create_family'))
 
 
@@ -301,13 +310,15 @@ def initial_email(members, family):
                 new_msg_html += "<p>" + new_content1 + "</p>"
                 new_msg_html += "<p>" + new_content2 + "</p>"
                 new_msg_html += "<p>" + new_closing + "</p>"
-                msg = EmailMultiAlternatives(new_subject, new_msg, from_email, to)
+                msg = EmailMultiAlternatives(
+                    new_subject, new_msg, from_email, to)
                 msg.attach_alternative(new_msg_html, "text/html")
                 msg.send()
 
 
         # Build You've been added to a Challenge Email [status !=new, 'existing']
-        subject = "Congrats! You've been added to " + family.family_name.title() + " on Family Wall!"
+        subject = "Congrats! You've been added to " + \
+            family.family_name.title() + " on Family Wall!"
         text_content = 'Hello!\n\nA Family Wall has been created and you were declared a member!'
         url_msg = "See what your family is up to at: " + DEFAULT_DOMAIN + "/accounts/get_family/" + str(
             family.pk) + "/ "
@@ -315,7 +326,8 @@ def initial_email(members, family):
         html_content = '<div style="font-size: 16px; width:100%; margin: 20px;"><p>Hello!</p><p>A Family Wall has been created and you were declared a member!'
 
         if family.hero_image:
-            html_content += "<div style='height: 150px; width: 320px; margin: 20px auto; display:inline-block; background: url(" + family.hero_image.url + ");background-size:contain; background-repeat:no-repeat;'></div>"
+            html_content += "<div style='height: 150px; width: 320px; margin: 20px auto; display:inline-block; background: url(" + \
+                family.hero_image.url + ");background-size:contain; background-repeat:no-repeat;'></div>"
         html_content += "<p>" + url_msg + "</p>"
         closing_msg = "Have Fun and Have a Nice Day!"
 
@@ -328,10 +340,39 @@ def initial_email(members, family):
     except SMTPResponseException as e:
         error_code = e.smtp_code
         error_message = e.smtp_error
-        log.warning(f"WARNING: STMPResponseException: ", error_code, error_message)
+        log.warning(f"WARNING: STMPResponseException: ",
+                    error_code, error_message)
 
     return True
 
+
+@login_required
+def userprofile(request):
+    """
+    Profile settings for the user,
+    to change/update their own profile.
+    """
+    user = request.user
+    profileFormSet = formset_factory(ProfileImageForm)
+    form = ProfileForm(request.POST, request.FILES, instance=request.user.user_profile)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            if 'form-0-profile_picture' in request.FILES:
+                user.user_profile.profile_picture = request.FILES['form-0-profile_picture']
+            form.save()
+
+            messages.info(request, 'Profile updated successfully')
+            return redirect(reverse('default_wall'))
+    else:
+        form = ProfileForm(instance=request.user)
+        formset = profileFormSet()
+
+        return render(request, 'userprofile.html', {
+            'form': form,
+            'formset': formset
+        })
 
 def delete_email(members, family):
     """
@@ -360,3 +401,4 @@ def delete_email(members, family):
         log.warning(f"WARNING: STMPResponseException: ", error_code, error_message)
 
     return True
+
