@@ -114,6 +114,18 @@ class ProfileForm(ModelForm):
         ]
 
 
+class ProfileImageForm(ModelForm):
+    """
+    A user edit profile form.
+    This is the form for the profile picture.
+    """
+    class Meta:
+        model = UserProfile
+        fields = [
+          'profile_picture',
+        ]
+
+
 class CreateFamilyForm(forms.Form):
     """
     Form to Create A Family

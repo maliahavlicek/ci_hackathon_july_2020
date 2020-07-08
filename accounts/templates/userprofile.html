@@ -14,6 +14,7 @@
   <form method="POST" action="" enctype="uniForm">
   {% csrf_token %}
     {{ form|crispy }}
+    {{ formset|crispy }}
     <input class="btn btn-black-sm" type="submit" value="Update changes">
   </form>
 {% endblock %}

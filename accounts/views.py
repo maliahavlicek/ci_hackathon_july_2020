@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationFrom, CreateFamilyForm
 from accounts.models import Family
 from users.models import User
-from .forms import ProfileForm
+from django.forms.formsets import formset_factory
+from .forms import ProfileForm, ProfileImageForm
 import json
 from .password import random_string
 from posts.models import Post
@@ -251,6 +252,7 @@ def userprofile(request):
     to change/update their own profile.
     """
     user = request.user
+    profileFormSet = formset_factory(ProfileImageForm)
     form = ProfileForm(instance=user)
 
     if request.method == 'POST':
@@ -262,5 +264,10 @@ def userprofile(request):
             context = {'form': form}
             return render(request, 'userprofile.html', context)
     else:
-        context = {'form': form}
-        return render(request, 'userprofile.html', context)
+        form = ProfileForm()
+        formset = profileFormSet()
+
+        return render(request, 'userprofile.html', {
+            'form': form,
+            'formset': formset
+        })
