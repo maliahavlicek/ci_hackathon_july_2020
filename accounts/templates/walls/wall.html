@@ -22,7 +22,7 @@
             <div class="left col-md-5 col-sm-12">
                 {% if families|length > 1 %}
                     <div class="form-group">
-                        <label for="switch_family">Change Family Wall</label>
+                        <label for="switch_family" class="label-title">Change Family Wall</label>
                         <select id="switch_family">
                             {% for fam in families %}
                                 <option value="{{ fam.pk }}" {% if fam.pk == family.pk %}
