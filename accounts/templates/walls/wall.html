@@ -32,6 +32,10 @@
                         </select>
                     </div>
                 {% endif %}
+                <a href="{% url 'update_family' id=family.pk %}" class="btn btn-primary"><i
+                        class="fas fa-users-cog"></i>
+                    Mange Family</a>
+
                 <div>
                     <h4>How are you doing?</h4>
                     {# include statu input for current authenticated user #}

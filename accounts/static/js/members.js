@@ -33,28 +33,13 @@ function member_list() {
     // hidden input containing members that is sent with Create Challenge
     var list = get_members();
     // members html output containter
+    var user = document.getElementById("id_user").value;
     var member_block = document.getElementById('member_list');
     member_block.innerHTML = '';
     for (var i in list) {
-        //
-        // <div class="row">
-        //         <div class="form-group member-entry col-9 mb-0" style="display: block;">
-        //             <div class="form-group">
-        //                 <div class="">
-        //                     <input class="form-control" id="email" type="email" aria-label="email" placeholder="Email">
-        //                     <span id="error_email"></span>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //         <div class="form-group member-entry col-3 mb-0" style="display: block;">
-        //             <div class="form-group">
-        //                 <div class=""><a onclick="add_member();" id="add_member" class="form-control btn btn-primary" disabled="false"><i class="fas fa-user-plus" aria-hidden="true"></i> Member</a></div>
-        //             </div>
-        //         </div>
-        //     </div>
 
-
-        var item = `
+        if (list[i].email !== user) {
+            var item = `
                 <div id="member-row-${list[i].email}" class="row member-row">            
                     <div class="form-group col-9 mb-0">
                       <div class="member">${list[i].email}</div>
@@ -66,7 +51,8 @@ function member_list() {
                     </div>
                 </div>
                 `;
-        member_block.innerHTML += item;
+            member_block.innerHTML += item;
+        }
     }
 
 }

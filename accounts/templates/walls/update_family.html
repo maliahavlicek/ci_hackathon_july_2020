@@ -2,7 +2,7 @@
 {% load static tz bootstrap_tags crispy_forms_tags %}
 {% block page_title %}
     {# Put page specific HTML Title Here #}
-    Create Family
+    Update Family
 {% endblock %}
 {% block head_css %}
     {# Put page specific CSS style links here. Ok to be empty. #}
@@ -13,7 +13,7 @@
 {% endblock %}
 {% block page_heading %}
     {# Put page specific javascript tags here. Ok to be empty. #}
-    Create Family
+    Update Family
 {% endblock %}
 {% block main_content %}
     {# Put main content here. SHOULD NOT BE EMPTY. #}
@@ -23,6 +23,13 @@
             {{ form |as_bootstrap }}
             {# restrict number of family members to 50 to prevent bots killing site #}
             <input type="hidden" id="max_members" value="50">
+            <div class="form-group row">
+                <div class="form-group col-md-2 col-sm-12">
+                    <label for="current_hero_image">Existing Image</label>
+                    <img id="current_hero_image" src="{{ family.hero_image.url }}" alt="Existing Hero Image"
+                         class="img-thumbnail">
+                </div>
+            </div>
 
             <div class="form-group col-md-12 mb-0 p-0">
                 <label>Members</label>
@@ -61,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-default">CREATE FAMILY</button>
+            <button class="btn btn-default">UPDATE FAMILY</button>
         </form>
     {% endlocaltime %}
     <script type="text/javascript" src="{% static 'js/members.js' %}"></script>
