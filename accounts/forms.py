@@ -2,10 +2,9 @@ from django import forms
 from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
-from users.models import User
+from users.models import User, UserProfile
 from django.contrib.auth.forms import UserCreationForm
 from .models import Family
-from users.models import UserProfile
 from django.template.defaultfilters import filesizeformat
 
 
@@ -119,6 +118,7 @@ class ProfileImageForm(ModelForm):
     A user edit profile form.
     This is the form for the profile picture.
     """
+
     class Meta:
         model = UserProfile
         fields = [

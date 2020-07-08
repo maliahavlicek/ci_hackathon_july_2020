@@ -253,18 +253,19 @@ def userprofile(request):
     """
     user = request.user
     profileFormSet = formset_factory(ProfileImageForm)
-    form = ProfileForm(instance=user)
+    form = ProfileForm(request.POST, request.FILES, instance=request.user.user_profile)
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=user)
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
+            if 'form-0-profile_picture' in request.FILES:
+                user.user_profile.profile_picture = request.FILES['form-0-profile_picture']
             form.save()
 
             messages.info(request, 'Profile updated successfully')
-            context = {'form': form}
-            return render(request, 'userprofile.html', context)
+            return redirect(reverse('default_wall'))
     else:
-        form = ProfileForm()
+        form = ProfileForm(instance=request.user)
         formset = profileFormSet()
 
         return render(request, 'userprofile.html', {
