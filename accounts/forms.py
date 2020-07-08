@@ -100,6 +100,7 @@ class CreateFamilyForm(forms.Form):
     family_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
     hero_image = forms.ImageField(label="Hero Image")
     members = forms.CharField(widget=forms.HiddenInput(), required=False)
+    orig_members = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Family

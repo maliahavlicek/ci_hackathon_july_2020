@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static tz bootstrap_tags crispy_forms_tags %}
+{% load static tz bootstrap_tags crispy_forms_tags filters %}
 {% block page_title %}
     {# Put page specific HTML Title Here #}
     Update Family
@@ -20,9 +20,21 @@
     {% localtime on %}
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+
+            <div id="member-row" class="row member-row">
+                {# allow user to leave family  #}
+                <div class="col-12 mb-1">
+                    <label for="leave">If this family isn't your thing, feel free to leave at any time.</label>
+                    <input type="hidden" id="id_user" value="{{ request.user.email }}"/>
+                    <button name="leave" id="leave" class="btn btn-default"><i class="fas fa-user-slash"></i> Leave
+                        Family
+                    </button>
+                </div>
+            </div>
             {{ form |as_bootstrap }}
             {# restrict number of family members to 50 to prevent bots killing site #}
-            <input type="hidden" id="max_members" value="50">
+            <input type="hidden" id="max_members" value="{{ family.get_members|length|fifty_minus }}">
+            <input type="hidden" id="update" value="true">
             <div class="form-group row">
                 <div class="form-group col-md-2 col-sm-12">
                     <label for="current_hero_image">Existing Image</label>
@@ -33,13 +45,18 @@
 
             <div class="form-group col-md-12 mb-0 p-0">
                 <label>Members</label>
-                {# placeholder for user creating family to know they don't have to add themselves #}
-                <div id="member-row-test1@test.com" class="row member-row">
-                    <div class="col-9">
-                        <div id="default_member" class="member">{{ request.user.email }}</div>
-                        <input type="hidden" id="id_user" value="{{ request.user.email }}"/>
-                    </div>
+                <div id="existing_members">
+                    {% for member in family.get_members %}
+                        {% if member != request.user %}
+                            <div id="member-row" class="row member-row">
+                                <div class="col-9">
+                                    <div id="default_member" class="member">{{ member.email }}</div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
+                {# placeholder for user adding family members #}
                 <div id="member_list">
                     {# javascript will automatically fill this in as user interacts with form #}
                 </div>
