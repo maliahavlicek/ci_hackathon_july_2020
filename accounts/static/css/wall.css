@@ -17,11 +17,19 @@
     text-align: center;
     text-transform: uppercase;
     background-color: transparent;
+    font-size: 25px;
 }
 
 .hero-family-image {
     box-shadow: var(--box-shadow);
     border-radius: var(--box-radius);
     margin: 2% auto;
-    max-width: 200px;
+    max-height: 150px;
+    width: 100%;
+    object-fit: cover;
+}
+
+h4 {
+    text-transform: uppercase;
+    font-size: 20px;
 }
