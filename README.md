@@ -93,6 +93,29 @@ The text is mostly written in a darker shade of grey colour for better readabili
 Overall, our visual style is relying on modern UI principles like round corners and light shadows for the elements such as navigation, footer, images and buttons.
 Since our product is primarily made to be used by elderly people, our elements and font sizes tend to be larger than what might be expected from modern app UI and we tried to use uppercase text where possible.
 
+# Technologies Used
+
+This project greatly focuses on the following technologies:
+
+1. [HTML](https://en.wikipedia.org/wiki/HTML) - for creating the layout and the structure of the website
+1. [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - for styling the website’s HTML code
+1. [Bootstrap](https://getbootstrap.com/) - for additional styling and adding responsiveness to the website
+1. [JavaScript](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - for adding functionalities behind the elements
+1. [Git](https://git-scm.com/) - for version control
+
+Technology used that is connected to [Bootstrap](https://getbootstrap.com/) for some components to function properly:
+
+1. [jQuery](https://jquery.com/)
+1. [Popper.js](https://popper.js.org/)
+1. [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+
+Additionally, we have also used the following platforms to help us shape the website and the brand:
+
+1. [GitHub](https://github.com/) - for hosting the project's repository
+1. [Heroku](https://www.heroku.com/) - for hosting our project
+1. [Google Fonts](https://fonts.google.com/) - for selecting the fonts and implementing them into the HTML code
+1. [Figma](https://www.figma.com/) - for creating initial wireframe, some icons and brand identity
+1. [Balsamiq](https://balsamiq.com/) - for creating wireframes
 
 ## APIs
 
