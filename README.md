@@ -36,10 +36,10 @@ As a user...
 
 * I want to stay in touch with my family so that I don't feel isolated
 * I want to be able to contact my family online so that I don't have to break the social distancing rules by meeting them in person
-* I want to be able to communicate to my whole family so that I don't have to have multiple one-on-one communcation streams with each member like SMS or phone calls
+* I want to be able to communicate to my whole family so that I don't have to have multiple one-on-one communcation streams with each member, like SMS or phone calls
 * I want to know what is happening in lives of other family members so that I don't feel like I'm missing out important things while I'm at home
 * I want to be able to request help if I need it from my whole family so that I don't have to constantly annoy only one person
-* I want to communicate with my family in a safe and private environment so that we are not distracted by advertisements etc.
+* I want to communicate with my family in a safe and private environment so that we are not distracted by advertisements, etc.
 
 # Features and App Sections
 
