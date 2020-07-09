@@ -1,0 +1,28 @@
+{# User Profile #}
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+    User profile
+{% endblock %}
+
+{% block page_heading %}
+    User profile
+{% endblock %}
+
+{% block main_content %}
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {{ formset|crispy }}
+        <div class="form-group row">
+            <div class="form-group col-md-2 col-sm-12">
+                <label for="current_hero_image">Existing Image</label>
+                <img id="current_hero_image" src="{{ user.user_profile.profile_picture.url }}"
+                     alt="Existing Profile Image"
+                     class="img-thumbnail">
+            </div>
+        </div>
+        <input class="btn btn-black-sm" type="submit" value="Update changes">
+    </form>
+{% endblock %}

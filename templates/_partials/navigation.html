@@ -1,17 +1,17 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg mr-auto">
-    <span class="navbar-item nav-image">
-        <a href="{% url 'index' %}">
-            <img src="{% static 'logo.svg' %}" alt="Logo for App">
-        </a>
-    </span>
+  <span class="navbar-item nav-image">
+    <a href="{% url 'index' %}">
+      <img src="{% static 'logo.svg' %}" alt="Logo for App">
+    </a>
+  </span>
     <a class="navbar-brand" id="logo-text" href="{% url 'index' %}">Family Wall</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-            <img src="{% static 'burger-icon.svg' %}" alt="Logo for App" width="32" height="32">
-        </span>
+    <span class="navbar-toggler-icon">
+      <img src="{% static 'burger-icon.svg' %}" alt="Logo for App" width="32" height="32">
+    </span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -19,15 +19,17 @@
             {% if user.is_authenticated %}
 
                 <li>
-                    <a class="dropdown-item nav-link" id="logout" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout</a>
+                    <a class="dropdown-item nav-link" id="logout" href="{% url 'logout' %}"><i
+                            class="fa fa-sign-out"></i>Logout</a>
                 </li>
-                <Li>
-                    <a class="dropdown-item nav-link" id="wall" href="{% url 'default_wall' %}"><i class="fa fa-sign-out"></i>Wall</a>
-                </Li>
-                <Li>
-                    <a class="dropdown-item nav-link" id="create-family" href="{% url 'create_family' %}"><i class="fa fa-sign-out"></i>Create
+                <li>
+                    <a class="dropdown-item nav-link" href="{% url 'default_wall' %}"><i class="fa fa-sign-out"></i>Wall</a>
+                </li>
+                <a class="dropdown-item nav-link" href="{% url 'userprofile' %}"><i class="fas fa-user"></i>Profile</a>
+                <li>
+                    <a class="dropdown-item nav-link" href="{% url 'create_family' %}"><i class="fa fa-sign-out"></i>Create
                         Family</a>
-                </Li>
+                </li>
 
             {% else %}
                 <li class="nav-item"><a class="dropdown-item nav-link" id="login" href="{% url 'login' %}"><i
