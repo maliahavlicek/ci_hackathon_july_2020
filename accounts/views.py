@@ -12,7 +12,7 @@ import json
 from .password import random_string
 from posts.models import Post
 from ci_hackathon_july_2020.settings import EMAIL_HOST_USER, DEFAULT_DOMAIN
-from django.core.mail import EmailMultiAlternatives, EmailMessage
+from django.core.mail import EmailMultiAlternatives
 import logging
 from status.forms import MOOD_CHOICES
 
