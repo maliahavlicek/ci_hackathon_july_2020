@@ -7,8 +7,8 @@
 # Exclude Django created local def folders
 *.sqlite3
 *.pyc
+*/__pycache__/
 __pycache__
-
 
 # Exclude VScode created def folders
 .vscode
