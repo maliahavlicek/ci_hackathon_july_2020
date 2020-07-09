@@ -78,47 +78,6 @@ h4 {
     color: var(--color-secondary-supporting-purple);
 }
 
-/*a.mood-image {*/
-/*    height: 40px;*/
-/*    width: 40px;*/
-/*    background-image: url(/static/assets/images/emojis/emoji-amazing.svg);*/
-/*    display: inline-block;*/
-/*    padding: 0;*/
-/*    cursor: pointer;*/
-/*    color: #3F96DA;*/
-/*    margin: 10px;*/
-/*}*/
-
-/*a.mood-image.amazing {*/
-/*    background-image: url(/static/assets/images/emojis/emoji-amazing.svg);*/
-/*}*/
-
-/*a.mood-image.happy {*/
-/*    background-image: url(/static/assets/images/emojis/emoji-happy.svg);*/
-/*}*/
-
-/*a.mood-image.good {*/
-/*    background-image: url(/static/assets/images/emojis/emoji-good.svg);*/
-/*}*/
-
-/*a.mood-image.sad {*/
-/*    background-image: url(/static/assets/images/emojis/emoji-sad.svg);*/
-/*}*/
-
-/*a.mood-image.terrible {*/
-/*    background-image: url(/static/assets/images/emojis/emoji-terrible.svg);*/
-/*}*/
-
-/*a.mood-image:hover, a.mood-image:selected {*/
-/*    height: 45px;*/
-/*    width: 45px;*/
-/*    margin: 0;*/
-/*    -webkit-box-shadow: 10px 10px 10px 0 rgba(159, 63, 218, 1);*/
-/*    -moz-box-shadow: 10px 10px 10px 0 rgba(159, 63, 218, 1);*/
-/*    box-shadow: 10px 10px 10px 0 rgba(159, 63, 218, 1);*/
-/*}*/
-
-
 #id_mood input[type=radio] {
     display: none;
 }
