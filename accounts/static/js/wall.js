@@ -121,11 +121,12 @@ function update_status() {
 
 
 // Look for updated Statuses every 2 minutes: 120000 miliseconds
+// seems to be in seconds not mili, switch to 120
 
 function countdown_new() {
 
 
-    var updateTime = 12000;
+    var updateTime = 120;
 
     let t = window.setInterval(function () {
         updateTime = eval(updateTime) - eval(1);
