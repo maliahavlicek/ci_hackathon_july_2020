@@ -78,6 +78,94 @@ h4 {
     color: var(--color-secondary-supporting-purple);
 }
 
-.mood-image {
+/*a.mood-image {*/
+/*    height: 40px;*/
+/*    width: 40px;*/
+/*    background-image: url(/static/assets/images/emojis/emoji-amazing.svg);*/
+/*    display: inline-block;*/
+/*    padding: 0;*/
+/*    cursor: pointer;*/
+/*    color: #3F96DA;*/
+/*    margin: 10px;*/
+/*}*/
 
+/*a.mood-image.amazing {*/
+/*    background-image: url(/static/assets/images/emojis/emoji-amazing.svg);*/
+/*}*/
+
+/*a.mood-image.happy {*/
+/*    background-image: url(/static/assets/images/emojis/emoji-happy.svg);*/
+/*}*/
+
+/*a.mood-image.good {*/
+/*    background-image: url(/static/assets/images/emojis/emoji-good.svg);*/
+/*}*/
+
+/*a.mood-image.sad {*/
+/*    background-image: url(/static/assets/images/emojis/emoji-sad.svg);*/
+/*}*/
+
+/*a.mood-image.terrible {*/
+/*    background-image: url(/static/assets/images/emojis/emoji-terrible.svg);*/
+/*}*/
+
+/*a.mood-image:hover, a.mood-image:selected {*/
+/*    height: 45px;*/
+/*    width: 45px;*/
+/*    margin: 0;*/
+/*    -webkit-box-shadow: 10px 10px 10px 0 rgba(159, 63, 218, 1);*/
+/*    -moz-box-shadow: 10px 10px 10px 0 rgba(159, 63, 218, 1);*/
+/*    box-shadow: 10px 10px 10px 0 rgba(159, 63, 218, 1);*/
+/*}*/
+
+
+#id_mood input[type=radio] {
+    display: none;
 }
+
+#id_mood input[type=radio] + label {
+    display: none;
+    height: 40px;
+    width: 40px;
+    background-image: url(/static/assets/images/emojis/emoji-amazing.svg);
+    display: inline-block;
+    padding: 0;
+    cursor: pointer;
+    color: #3F96DA;
+    margin: 10px;
+}
+
+#id_mood input[type=radio].amazing + label {
+    background-image: url(/static/assets/images/emojis/emoji-amazing.svg);
+}
+
+#id_mood input[type=radio].happy + label {
+    background-image: url(/static/assets/images/emojis/emoji-happy.svg);
+}
+
+#id_mood input[type=radio].good + label {
+    background-image: url(/static/assets/images/emojis/emoji-good.svg);
+}
+
+#id_mood input[type=radio].sad + label {
+    background-image: url(/static/assets/images/emojis/emoji-sad.svg);
+}
+
+#id_mood input[type=radio].terrible + label {
+    background-image: url(/static/assets/images/emojis/emoji-terrible.svg);
+}
+
+#id_mood input[type="radio"]:checked + label {
+    -webkit-box-shadow: 10px 10px 10px 0 rgba(159, 63, 218, 1);
+    -moz-box-shadow: 10px 10px 10px 0 rgba(159, 63, 218, 1);
+    box-shadow: 10px 10px 10px 0 rgba(159, 63, 218, 1);
+}
+
+#id_mood input[type="radio"]:hover + label {
+    -webkit-box-shadow: 10px 10px 10px 0 rgba(63, 150, 218, 1);
+    -moz-box-shadow: 10px 10px 10px 0 rgba(63, 150, 218, 1);
+    box-shadow: 10px 10px 10px 0 rgba(63, 150, 218, 1);
+    transform: rotate(-3deg) scale(1.3);
+    -webkit-animation: 0;
+}
+
