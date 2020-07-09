@@ -1,3 +1,15 @@
+# FAMILY WALL - Online Family Meetup Place
+
+_Code Institute - Hackathon July 2020 - by Malia, Django, Tony, Justin and Valentina (Advanced-B Group)_
+
+Welcome to FAMILY WALL - an online meetup place for family members. 
+Family Wall is dedicated to connecting families without the distraction of flashy ads and games. You choose who you want in your family and see only their posts.
+
+You can organize your close friends into different walls and easily switch from one interest group to another. No matter which wall you are on, you'll always be able to share your status report to the people you care about the most and easily let others know your plans and if you need help with something.
+
+Our goal is to keep the focus on the family and streamline the ability to share images and messages in a safe and private forum.
+
+![App Showcase](static/assets/readme-files/app-showcase.png)
 
 ## APIs
 
