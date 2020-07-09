@@ -13,7 +13,6 @@
 {% endblock %}
 {% block page_heading %}
     {# Put page specific javascript tags here. Ok to be empty. #}
-    {{ family.family_name|capfirst }} Dashboard
 {% endblock %}
 {% block main_content %}
     {# Put main content here. SHOULD NOT BE EMPTY. #}
@@ -23,8 +22,8 @@
             <div class="left col-md-5 col-sm-12">
                 {% if families|length > 1 %}
                     <div class="form-group">
-                        <label for="switch_family">Change Family Wall</label>
-                        <select id="switch_family">
+                        <label for="switch_family" class="label-title">Change Family Wall</label>
+                        <select id="switch_family" class="mr-3 ml-3">
                             {% for fam in families %}
                                 <option value="{{ fam.pk }}" {% if fam.pk == family.pk %}
                                         selected{% endif %}>{{ fam|upper }}</option>
@@ -32,70 +31,111 @@
                         </select>
                     </div>
                 {% endif %}
-                <a href="{% url 'update_family' id=family.pk %}" class="btn btn-primary"><i
-                        class="fas fa-users-cog"></i>
-                    Mange Family</a>
-
-                <div>
-                    <h4>How are you doing?</h4>
-                    {# include statu input for current authenticated user #}
-                    {% include 'status_form.html' %}
-                </div>
-                <div>
-                    {# include rating input for current authenticated user #}
-                    <h4>Family Status</h4>
-                    {% for member in family.get_members %}
-                        {% if member != request.user %}
-                            <div class="p-2 member-status row">
-                                <div class="col-12">
-                                    <div class="center">{{ member }}</div>
-                                </div>
-                                <div class="col-6">
-                                    <div>
-                                        <img class="mx-auto profile_pic"
-                                             src="{{ member.user_profile.profile_picture.url }}"
-                                             alt="Profile Image for {{ member }}">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="status {% if member.status and member.status.updated_date|hours_ago:24 %} active {% else %} inactive" {% endif %}id="status_{{ member.id }}">
-                                        <div class="active">
-                                            <div class="row">
-                                                <div class="col">Feels:</div>
-                                                <div id="mood_{{ member.id }}"
-                                                     class="col">{{ member.status.mood }}</div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">Is Planning:</div>
-                                                <div id="plan_{{ member.id }}"
-                                                     class="col">{{ member.status.plans }}</div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">Needs Help With:</div>
-                                                <div id="help_{{ member.id }}"
-                                                     class="col">{{ member.status.help }}</div>
-                                            </div>
-                                        </div>
-                                        <div class="inactive">
-                                            <p>Inactive Today</p>
-                                            {% if member.status.updated_date %}
-                                                <p>Last Updated {{ member.status.updated_date|date }}</p>{% endif %}
-                                        </div>
-                                    </div>
+                <div class="row">
+                    <div id="YourStatusAccordion" class="w-100">
+                        <div class="card">
+                            <div class="card-header status" id="your_status">
+                                <h5 class="mb-0">
+                                    <button data-toggle="collapse" data-target="#yourStatus"
+                                            aria-expanded="true" aria-controls="yourStatus">How are you doing? <i
+                                            class="fas fa-chevron-down" aria-hidden="true"></i>
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="yourStatus" class="collapse show" aria-labelledby="your_status"
+                                 data-parent="#YourStatusAccordion">
+                                <div class="card-body">
+                                    {# include statu input for current authenticated user #}
+                                    {% include 'status_form.html' %}
                                 </div>
                             </div>
-                        {% endif %}
+                        </div>
+                    </div>
 
-                    {% endfor %}
+                    <div id="FamilyStatusAccordion" class="w-100">
+                        <div class="card">
+                            <div class="card-header status" id="family_status">
+                                <h5 class="mb-0">
+                                    <button data-toggle="collapse" data-target="#FamilyStatus"
+                                            aria-expanded="true" aria-controls="FamilyStatus">Family Status <i
+                                            class="fas fa-chevron-down" aria-hidden="true"></i>
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="FamilyStatus" class="collapse show" aria-labelledby="family_status"
+                                 data-parent="#FamilyStatusAccordion">
+                                <div class="card-body m-0 pt-0">
+                                    {% for member in family.get_members %}
+                                        {% if member != request.user %}
+                                            <div class="mt-0 p-0 member-status row">
+                                                <div class="col-12 mb-2 p-1 member-status-header">
+                                                    {{ member }}
+                                                </div>
+                                                <div class="col-sm-3 col-md-2">
+                                                    <div>
+                                                        <img class="mx-auto profile_pic"
+                                                             src="{{ member.user_profile.profile_picture.url }}"
+                                                             alt="Profile Image for {{ member }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-9 col-md-10">
+                                                    <div class="status {% if member.status and member.status.updated_date|hours_ago:24 %} active {% else %} inactive" {% endif %}id="status_{{ member.id }}">
+                                                        <div class="active">
+                                                            <div class="row">
+                                                                <div class="col-4 status-label">Feels:</div>
+                                                                <div id="mood_{{ member.id }}"
+                                                                     class="col-8 m-0 pl-0">
+                                                                    <div class="mood-image level-{{ member.status.mood }} "></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4 status-label">Plans To:
+                                                                </div>
+                                                                <div id="plan_{{ member.id }}"
+                                                                     class="col-8 m-0 pl-0">{{ member.status.plans }}</div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4 status-label">Needs
+                                                                    Help:
+                                                                </div>
+                                                                <div id="help_{{ member.id }}"
+                                                                     class="col-8 m-0 pl-0">{{ member.status.help }}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="inactive">
+                                                            <p>Inactive Today</p>
+                                                            {% if member.status.updated_date %}
+                                                                <p>Last
+                                                                    Updated {{ member.status.updated_date|date }}</p>{% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
 
 
             <div class="right col-md-7 col-sm-12">
                 <div class="row">
                     <div class="col-md-12">
-                        <img class="img-fluid" src="{{ family.hero_image.url }}"
-                             alt="hero image for {{ family.family_name }}"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <div id="family-wall-h1">{{ family.family_name|capfirst }} Dashboard</div>
+                            </div>
+                        </div>
+                        <div class="hero_container">
+                            <img class="img-fluid hero-family-image" src="{{ family.hero_image.url }}"
+                                 alt="hero image for {{ family.family_name }}"/>
+                        </div>
                     </div>
                 </div>
                 {% for post in post %}
@@ -103,7 +143,8 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <a href="{% url 'add_post' id=family.pk %}" class="btn btn-primary"><i
+                                <a href="{% url 'add_post' id=family.pk %}" id="btn-primary-addpost"
+                                   class="btn btn-primary"><i
                                         class="fa fa-plus"></i> Add
                                     Post</a>
                             </div>

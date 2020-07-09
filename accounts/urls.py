@@ -1,6 +1,6 @@
 from django.conf.urls import include
 from django.urls import path
-from accounts.views import logout, login, registration, create_family, userprofile, wall, default_wall, update_family 
+from accounts.views import logout, login, registration, create_family, userprofile, wall, default_wall, update_family
 from accounts import url_reset
 
 urlpatterns = [

@@ -26,6 +26,7 @@ if os.path.exists('env.py'):
 else:
     DEBUG = False
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -35,7 +36,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-ALLOWED_HOSTS = [os.environ.get('HOSTNAME'), "localhost", "127.0.0.1", "adv-b-wall.herokuapp.com"]
+# ALLOWED_HOSTS = [os.environ.get('HOSTNAME'), "localhost", "127.0.0.1", "adv-b-wall.herokuapp.com"]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'adv-b-wall.herokuapp.com']
 DEFAULT_DOMAIN = 'https://adv-b-wall.herokuapp.com'
 
 # Application definition
@@ -173,7 +175,7 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
     AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME)
 
 STATICFILES_LOCATION = 'static'
-STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -208,3 +210,4 @@ if DEBUG:
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 else:
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    

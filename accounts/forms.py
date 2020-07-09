@@ -104,12 +104,13 @@ class ProfileForm(ModelForm):
     A user edit profile form.
     'user' is excluded to probhit username edditing.
     """
+
     class Meta:
         model = User
         fields = [
-          'first_name',
-          'last_name',
-          'email',
+            'first_name',
+            'last_name',
+            'email',
         ]
 
 
@@ -122,7 +123,7 @@ class ProfileImageForm(ModelForm):
     class Meta:
         model = UserProfile
         fields = [
-          'profile_picture',
+            'profile_picture',
         ]
 
 

@@ -315,10 +315,9 @@ def initial_email(members, family):
                 msg.attach_alternative(new_msg_html, "text/html")
                 msg.send()
 
-
         # Build You've been added to a Challenge Email [status !=new, 'existing']
         subject = "Congrats! You've been added to " + \
-            family.family_name.title() + " on Family Wall!"
+                  family.family_name.title() + " on Family Wall!"
         text_content = 'Hello!\n\nA Family Wall has been created and you were declared a member!'
         url_msg = "See what your family is up to at: " + DEFAULT_DOMAIN + "/accounts/get_family/" + str(
             family.pk) + "/ "
@@ -327,7 +326,7 @@ def initial_email(members, family):
 
         if family.hero_image:
             html_content += "<div style='height: 150px; width: 320px; margin: 20px auto; display:inline-block; background: url(" + \
-                family.hero_image.url + ");background-size:contain; background-repeat:no-repeat;'></div>"
+                            family.hero_image.url + ");background-size:contain; background-repeat:no-repeat;'></div>"
         html_content += "<p>" + url_msg + "</p>"
         closing_msg = "Have Fun and Have a Nice Day!"
 
@@ -373,6 +372,7 @@ def userprofile(request):
             'form': form,
             'formset': formset
         })
+
 
 def delete_email(members, family):
     """
