@@ -6,11 +6,11 @@
 
         </div>
 
-        <div class="col-10">
+        <div class="col-12">
             <div class="form-group" id="id_mood">
                 <div class="field-error" id="id_mood_error"></div>
                 <label for="id_mood" class="label label-title">I'm Feeling</label>
-                <div>
+                <div class="row ml-1">
                     {% for choice in mood_choices %}
 
                         <input aria-label="{ choice.1 }}" type="radio" name="mood" class="mood {{ choice.1 }}"

@@ -82,24 +82,24 @@
                                                     <div class="status {% if member.status and member.status.updated_date|hours_ago:24 %} active {% else %} inactive" {% endif %}id="status_{{ member.id }}">
                                                         <div class="active">
                                                             <div class="row">
-                                                                <div class="col-sm-6 col-md-4 status-label">Feels:</div>
+                                                                <div class="col-4 status-label">Feels:</div>
                                                                 <div id="mood_{{ member.id }}"
-                                                                     class="col-sm-6 col-md-8 m-0 pl-0">
+                                                                     class="col-8 m-0 pl-0">
                                                                     <div class="mood-image level-{{ member.status.mood }} "></div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-sm-6 col-md-4 status-label">Plans To:
+                                                                <div class="col-4 status-label">Plans To:
                                                                 </div>
                                                                 <div id="plan_{{ member.id }}"
-                                                                     class="col-sm-6 col-md-8 m-0 pl-0">{{ member.status.plans }}</div>
+                                                                     class="col-8 m-0 pl-0">{{ member.status.plans }}</div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-sm-6 col-md-4 status-label">Needs
+                                                                <div class="col-4 status-label">Needs
                                                                     Help:
                                                                 </div>
                                                                 <div id="help_{{ member.id }}"
-                                                                     class="col-sm-6 col-md-8 m-0 pl-0">{{ member.status.help }}</div>
+                                                                     class="col-8 m-0 pl-0">{{ member.status.help }}</div>
                                                             </div>
                                                         </div>
                                                         <div class="inactive">
