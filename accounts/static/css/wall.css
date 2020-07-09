@@ -82,8 +82,7 @@ h4 {
     display: none;
 }
 
-#id_mood input[type=radio] + label {
-    display: none;
+#id_mood input[type=radio] + label, div.mood-image {
     height: 40px;
     width: 40px;
     background-image: url(/static/assets/images/emojis/emoji-amazing.svg);
@@ -94,23 +93,24 @@ h4 {
     margin: 10px;
 }
 
-#id_mood input[type=radio].amazing + label {
+
+#id_mood input[type=radio].amazing + label, div.mood-image.level-1 {
     background-image: url(/static/assets/images/emojis/emoji-amazing.svg);
 }
 
-#id_mood input[type=radio].happy + label {
+#id_mood input[type=radio].happy + label, div.mood-image.level-2 {
     background-image: url(/static/assets/images/emojis/emoji-happy.svg);
 }
 
-#id_mood input[type=radio].good + label {
+#id_mood input[type=radio].good + label, div.mood-image.level-3 {
     background-image: url(/static/assets/images/emojis/emoji-good.svg);
 }
 
-#id_mood input[type=radio].sad + label {
+#id_mood input[type=radio].sad + label, div.mood-image.level-4 {
     background-image: url(/static/assets/images/emojis/emoji-sad.svg);
 }
 
-#id_mood input[type=radio].terrible + label {
+#id_mood input[type=radio].terrible + label, div.mood-image.level-5 {
     background-image: url(/static/assets/images/emojis/emoji-terrible.svg);
 }
 
@@ -128,3 +128,20 @@ h4 {
     -webkit-animation: 0;
 }
 
+.status-label {
+    color: var(--color-secondary-purple);
+    font-weight: 700;
+}
+
+.member-status-header {
+    border-bottom: 1px solid rgba(51, 51, 51, 0.25);
+    text-align: center;
+}
+
+.member-status.row {
+    border-bottom: 1px solid rgba(51, 51, 51, 0.25);
+}
+
+.member-status.row:last-of-type {
+    border-bottom: none;
+}

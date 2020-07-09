@@ -64,37 +64,42 @@
                             </div>
                             <div id="FamilyStatus" class="collapse show" aria-labelledby="family_status"
                                  data-parent="#FamilyStatusAccordion">
-                                <div class="card-body">
+                                <div class="card-body m-0 pt-0">
                                     {% for member in family.get_members %}
                                         {% if member != request.user %}
-                                            <div class="p-2 member-status row">
-                                                <div class="col-12">
-                                                    <div class="center">{{ member }}</div>
+                                            <div class="mt-0 p-0 member-status row">
+                                                <div class="col-12 mb-2 p-1 member-status-header">
+                                                    {{ member }}
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-sm-3 col-md-2">
                                                     <div>
                                                         <img class="mx-auto profile_pic"
                                                              src="{{ member.user_profile.profile_picture.url }}"
                                                              alt="Profile Image for {{ member }}">
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-sm-9 col-md-10">
                                                     <div class="status {% if member.status and member.status.updated_date|hours_ago:24 %} active {% else %} inactive" {% endif %}id="status_{{ member.id }}">
                                                         <div class="active">
                                                             <div class="row">
-                                                                <div class="col">Feels:</div>
+                                                                <div class="col-sm-6 col-md-4 status-label">Feels:</div>
                                                                 <div id="mood_{{ member.id }}"
-                                                                     class="col">{{ member.status.mood }}</div>
+                                                                     class="col-sm-6 col-md-8 m-0 pl-0">
+                                                                    <div class="mood-image level-{{ member.status.mood }} "></div>
+                                                                </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col">Is Planning:</div>
+                                                                <div class="col-sm-6 col-md-4 status-label">Plans To:
+                                                                </div>
                                                                 <div id="plan_{{ member.id }}"
-                                                                     class="col">{{ member.status.plans }}</div>
+                                                                     class="col-sm-6 col-md-8 m-0 pl-0">{{ member.status.plans }}</div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col">Needs Help With:</div>
+                                                                <div class="col-sm-6 col-md-4 status-label">Needs
+                                                                    Help:
+                                                                </div>
                                                                 <div id="help_{{ member.id }}"
-                                                                     class="col">{{ member.status.help }}</div>
+                                                                     class="col-sm-6 col-md-8 m-0 pl-0">{{ member.status.help }}</div>
                                                             </div>
                                                         </div>
                                                         <div class="inactive">
