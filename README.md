@@ -1,8 +1,61 @@
 
-# basic Django App with Login and Registration
+# Testing
 
-## travis build status
+Validation, manual unit, cross browser/cross device, travis, coverage, we roughed in a bit of testing.
+
+# Validation Testing 
+Various IDE's Pycharm VSCode and GitPod help do basic linter testing.
+
+CSS Validator Note, any error associated with root: color variables were ignored.
+HTML Validator - validation of HTML with Django is pretty useless as all {{}} bracketed values raise errors. I ran only a few files through the validator and instead relied heavily upon pycharm's IDE to identify mismatched tags and closing Django directives.
+django-extensions - used for validating templates from the command line python manage.py validate_templates
+JavaScript Validator Note any errors for let, variables set in other .js files, and constants were ignored. I also used a more ES6 friendly checker and there were no errors for main.js
+Pycharm IDE - PyCharm has inline validation for many file types. Python, CSS, HTML, DJANGO files were continuously tested for validity when using this IDE.
+
+## Unit Testing
+
+As core functionality and features were delivered we manually executed test cases to ensure profiles were updated, families were udpated and status could be changed and posts could be created. Console logs were checked and only favicon 404 errors were checked in.
+
+## Cross Browser/Cross Device Verification
+Spot checking of our application was done across the following devices operating systems and screen sizes is as follows:
+
+| DEVICE   | BROWSER | OS      | SCREEN WIDTH    |
+|----------|---------|---------|-----------------|
+| macbook  | firefox | Mojave  | HD 125-1240     |
+| macbook  | safari  | Mojave  | HD 125-1240     |
+| macbook  | chrome  | Mojave  | HD 125-1240     |
+| motog6   | chrome  | android | XS 360px & less |
+| iphoneSE | chrome  | iOs     | XS 360px & less |
+
+
+## Python Testing
+Tests were written for a couple of the accounts forms and views. 
+
+Basic test framework has been installed using django-nose driver. To run tests execute the following command from the terminal window:
+ 
+``` python manage.py test --noinput --settings ci_hackathon_july_2020.settings_test```
+
+[django-nose](https://pypi.org/project/django-nose/) was used to help configure and run the python tests with coverage output.
+
+To run these tests go to the command terminal and:
+
+python manage.py test --noinput --settings ms4_challenger.settings_test
+Generate a report coverage report
+Generate the HTML coverage html
+Open the newly created test_coverage directory in the root of your project folder.
+Open the index.html file inside it.
+Run the file in the browser to see the output.
+
+
+## Travis 
+Travis continuous integration testing with coverage was set up for this project to run the python tests mentioned above.
+
 [![Build Status](https://travis-ci.org/maliahavlicek/ci_hackathon_july_2020.svg?branch=master)](https://travis-ci.org/maliahavlicek/ci_hackathon_july_2020)
+
+
+
+
+
 
 ## Changing CSS or JS files
 Files stored in /static folders are hosted by AWS. if you make a change
@@ -80,11 +133,6 @@ so that changes will be collected to AWS. This way the deployment in heroku will
 1. ```python manage.py migrate```
 
 
-
-## Testing
-Basic test framework has been installed using django-nose driver. To run tests execute the following command from the terminal window:
- 
-``` python manage.py test --noinput --settings ci_hackathon_july_2020.settings_test```
 
 
 ## Notes
