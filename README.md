@@ -87,7 +87,7 @@ As a user...
 1. **Register** - create an account so that you can be invited to different family groups
 1. **Update User Profile** - after the registration, users can update their name and add a profile image
 1. **Create a Family Group** - create a family, add a family image and invite other family members to the group
-1. **Update Family Group** - update family group image and add new members
+1. **Update Family Group** - update family group image and add new members, allow user to leave a family
 1. **Update Your Status** - let others know how are you feeling today, what are your plans and request help from others
 1. **Post Messages on the Wall** - post what is on your mind or what you want others to know in the family group
 1. **Post Photos on the Wall** - upload images to the wall
@@ -95,6 +95,10 @@ As a user...
 ### Features to be implemented
 
 1. **React to posts and photos** - choose from 3 different reactions - thumbs up, heart and a star
+1. **Daily Prompts** - Build a queue of daily prompts to encourage interaction and doesn't leave elderly users waiting politely to be interacted with
+1. **Edit Message Post** - allow users to change their posts, especially if there was a typo, or to remove it
+1. **Edit Image Post** - allow users to change their posts, especially if they uploaded the wrong one, or to remove it
+
 
 ## Wireframes and Mockups
 
@@ -111,7 +115,12 @@ Here is one of the mockups from the [PDF](static/assets/images/readme-files/wire
 To create a proper model for all the required content an ERD is created on the second team call, This model has been expended later in the project to fit te extended requirements.
 Below you can see our model's diagram (ERD):
 
-![Mockup](mockups/models_ERD.png)
+# Database Choices 
+Our data is full of relationships so we chose to use POSTRGRES SQL. We have ManyToMany, OneToMany and extensions all over the place.
+
+Below is our Entity Relationship Diagram:
+
+![ERD](mockups/models_ERD.png)
 
 # Graphic Design and Brand Elements
 
@@ -122,6 +131,8 @@ On the one hand we have followed industry standards by implementing gradient col
 
 As our first step, we have done a brief research about the fonts used by [Facebook](https://www.facebook.com/) and [Whatsapp](https://www.whatsapp.com/).
 Since some of the fonts were copyrighted, we have looked into similar options on [Google Fonts](https://fonts.google.com/) and picked [Open Sans](https://fonts.google.com/specimen/Open+Sans?query=open+sans) and [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab) for our textual content.
+
+We chose a base font of 18px to make it more accessible to the elderly contigency and also put black text on a white background.
 
 ## Colours
 
@@ -216,7 +227,7 @@ Pycharm IDE - PyCharm has inline validation for many file types. Python, CSS, HT
 
 ## Unit Testing
 
-As core functionality and features were delivered we manually executed test cases to ensure profiles were updated, families were udpated and status could be changed and posts could be created. Console logs were checked and only favicon 404 errors were checked in.
+As core functionality and features were delivered we manually executed test cases to ensure profiles were updated, families were updated and status could be changed and posts could be created. Console logs were checked and only favicon 404 errors were checked in.
 
 ## Cross Browser/Cross Device Verification
 Spot checking of our application was done across the following devices operating systems and screen sizes is as follows:
@@ -241,7 +252,7 @@ Basic test framework has been installed using django-nose driver. To run tests e
 
 To run these tests go to the command terminal and:
 
-python manage.py test --noinput --settings ms4_challenger.settings_test
+```python manage.py test --noinput --settings ms4_challenger.settings_test```
 Generate a report coverage report
 Generate the HTML coverage html
 Open the newly created test_coverage directory in the root of your project folder.
@@ -261,7 +272,7 @@ You can see the struggles we had initially with sharing migrations across multip
 
 
 ## Defects
-Many issues were discovered during this project, but for the sake of time, not many were documented. They ranged from simply copy paste leftovers where the Create Post had a title of Create Family to the outstand such as the Profile Page can update the email, but doesn't translate over the the user 100% of the time.
+Many issues were discovered during this project, but for the sake of time, not many were documented. They ranged from simple copy paste leftovers where the Create Post had a title of Create Family to the outstanding such as the Profile Page can update the email, but doesn't translate over the the user 100% of the time.
 
 ### Bugs of Note:
 - *Could not get profile image back from the form* forgot the  enctype="multipart/form-data" on the form
