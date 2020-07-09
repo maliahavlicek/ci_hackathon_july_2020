@@ -11,6 +11,11 @@ Our goal is to keep the focus on the family and streamline the ability to share 
 
 ![App Showcase](static/assets/readme-files/app-showcase.png)
 
+# Table of Contents
+
+................
+
+
 # UX
 
 The results of the latest researches related to the COVID-19 pandemic have one thing in common - people aged 60 and above are more prone to coronavirus infection than any other age group.
@@ -25,14 +30,16 @@ Family Wall is primarily created for families with older members who are not abl
 It is designed as a combination of a Facebook wall and a private Whatsapp group.
 Members of the family wall can update the family on how they are feeling, what are they doing, request help from each other - as well as add posts and images to the wall.
 
-## User Goals
+## User Stories
 
 As a user...
 
 * I want to stay in touch with my family so that I don't feel isolated
+* I want to be able to contact my family online so that I don't have to break the social distancing rules by meeting them in person
+* I want to be able to communicate to my whole family so that I don't have to have multiple one-on-one communcation streams with each member like SMS or phone calls
 * I want to know what is happening in lives of other family members so that I don't feel like I'm missing out important things while I'm at home
 * I want to be able to request help if I need it from my whole family so that I don't have to constantly annoy only one person
-* I want to have a 
+* I want to communicate with my family in a safe and private environment so that we are not distracted by advertisements etc.
 
 # Features and App Sections
 
@@ -53,15 +60,13 @@ As a user...
 1. **Post Photos on the Wall** - upload images to the wall
 1. **React to posts and photos** - choose from 3 different reactions - thumbs up, heart and a star
 
-## Wireframes
+## Wireframes and Mockups
 
 Our wireframes were made in [Figma](https://www.figma.com/) and [Balsamiq](https://balsamiq.com/). The PDF of all of our wireframes is available [here.](static/assets/images/readme-files/wireframes.pdf)
 
 Initial low-fi wireframe for desktop:
 
 ![Desktop Low-Fi Wireframe](static/assets/readme-files/lowfi-wireframe-desktop.png)
-
-### Mockups
 
 Here is one of the mockups from the [PDF](static/assets/images/readme-files/wireframes.pdf) linked in the previous section.
 
