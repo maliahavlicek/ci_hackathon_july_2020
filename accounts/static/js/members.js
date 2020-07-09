@@ -28,45 +28,48 @@ function get_members() {
     return list;
 }
 
+/* helper function to get list of original members */
+function orig_member_list() {
+    var orig_members = document.getElementById('id_orig_members').value;
+    if (orig_members != null && orig_members !== "") {
+        orig_members = JSON.parse(orig_members);
+    } else {
+        orig_members = []
+    }
+    return orig_members;
+}
+
+
 /* create HTML for list of members for UI */
 function member_list() {
-    // hidden input containing members that is sent with Create Challenge
+    // members html output container
+    var update = false;
+    try {
+        update = document.getElementById("update").value;
+    } catch (e) {
+        update = false
+    }
     var list = get_members();
-    // members html output containter
+    var user = document.getElementById("id_user").value;
     var member_block = document.getElementById('member_list');
     member_block.innerHTML = '';
     for (var i in list) {
-        //
-        // <div class="row">
-        //         <div class="form-group member-entry col-9 mb-0" style="display: block;">
-        //             <div class="form-group">
-        //                 <div class="">
-        //                     <input class="form-control" id="email" type="email" aria-label="email" placeholder="Email">
-        //                     <span id="error_email"></span>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //         <div class="form-group member-entry col-3 mb-0" style="display: block;">
-        //             <div class="form-group">
-        //                 <div class=""><a onclick="add_member();" id="add_member" class="form-control btn btn-primary" disabled="false"><i class="fas fa-user-plus" aria-hidden="true"></i> Member</a></div>
-        //             </div>
-        //         </div>
-        //     </div>
 
-
-        var item = `
+        if (list[i].email !== user) {
+            var item = `
                 <div id="member-row-${list[i].email}" class="row member-row">            
                     <div class="form-group col-9 mb-0">
                       <div class="member">${list[i].email}</div>
                     </div>            
-                    <div class="form-group col-3 mb-0">
+                    <div class="form-group col-3 mb-0 p-0 pr-2">
                       <div class="form-group">
-                         <a onclick="remove('${list[i].email}');" class="form-control btn btn-primary"><i class="fas fa-user-times"></i> Remove</a>
+                         <a onclick="remove('${list[i].email}');" class="form-control btn btn-primary"><i class="fas fa-user-times"></i> Del</a>
                       </div>
                     </div>
                 </div>
                 `;
-        member_block.innerHTML += item;
+            member_block.innerHTML += item;
+        }
     }
 
 }
@@ -89,6 +92,7 @@ function remove(email) {
 /* send request out to validate Member Form and to then add result to  member_list */
 function add_member() {
     var list = get_members();
+    var orig_members = orig_member_list();
     var user = document.getElementById("id_user").value;
     // if exceeds max members, ignore input
     if (list.length < max_members) {
@@ -100,9 +104,10 @@ function add_member() {
 
             // Check that email is not already in list
             var emailInList = objectPropInArray(list, 'email', email);
-
+            var emailInOrig = objectPropInArray(orig_members, 'email', email);
             // add it to the list if it's not in there already
-            if (!emailInList && email !== user) {
+
+            if (!emailInList && !emailInOrig && email !== user) {
 
                 //stuff result into list
                 list.push({

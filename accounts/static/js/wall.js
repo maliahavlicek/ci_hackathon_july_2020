@@ -121,8 +121,25 @@ function update_status() {
 
 
 // Look for updated Statuses every 2 minutes: 120000 miliseconds
-let timer = 12000;
-setTimeout(get_all_statuses, timer);
+
+function countdown_new() {
+
+
+    var updateTime = 12000;
+
+    let t = window.setInterval(function () {
+        updateTime = eval(updateTime) - eval(1);
+
+        if (updateTime === 0) {
+            clearInterval(t);
+            // countdown_new();
+            get_all_statuses();
+        }
+    }, 1000);
+
+}
+
+get_all_statuses();
 
 // request current family member status from server
 function get_all_statuses() {
@@ -163,7 +180,7 @@ function get_all_statuses() {
                     }
                 } else {
                     // success from get_status API request
-                    let el = document.getElementById("family-status");
+                    let el = document.getElementById("FamilyStatus");
 
                     // make sure response is for current family wall
                     if (family === data.id.toLocaleString()) {
@@ -171,11 +188,11 @@ function get_all_statuses() {
                         // Loop through results and rebuild Status of Current Wall.
                         for (let i in data.members) {
                             //don't update current user, only other members
-                            if (data.members[i].id !== user.toLocaleString()) {
+                            if (data.members[i].id.toLocaleString() !== user.toLocaleString()) {
                                 let item = data.members[i];
                                 let id = item.id;
                                 // update status id="mood_{{ member.id }}"
-                                document.getElementById('mood_' + id).innerHTML = item.status.mood;
+                                document.getElementById('mood_' + id).innerHTML = `<div class="mood-image level-${item.status.mood}"></div>`;
 
                                 // update plan id="plan_{{ member.id }}"
                                 document.getElementById('plan_' + id).innerHTML = item.status.plans;
@@ -194,7 +211,7 @@ function get_all_statuses() {
             console.log('Got an error')
         });
     // set up next interval
-    setTimeout(get_all_statuses, timer);
+    countdown_new();
 
 }
 
