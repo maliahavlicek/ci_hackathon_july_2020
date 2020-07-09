@@ -19,7 +19,7 @@ Our goal is to keep the focus on the family and streamline the ability to share 
 - [Features and App Sections](#features-and-app-sections)
   * [App Sections](#app-sections)
   * [Features](#features)
-  * [Features to be implemented](#features-to-be-implemented)
+    + [Features to be implemented](#features-to-be-implemented)
   * [Wireframes and Mockups](#wireframes-and-mockups)
 - [Graphic Design and Brand Elements](#graphic-design-and-brand-elements)
   * [Fonts](#fonts)
@@ -92,7 +92,7 @@ As a user...
 1. **Post Messages on the Wall** - post what is on your mind or what you want others to know in the family group
 1. **Post Photos on the Wall** - upload images to the wall
 
-## Features to be implemented
+### Features to be implemented
 
 1. **React to posts and photos** - choose from 3 different reactions - thumbs up, heart and a star
 
