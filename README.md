@@ -13,7 +13,39 @@ Our goal is to keep the focus on the family and streamline the ability to share 
 
 # Table of Contents
 
-................
+- [FAMILY WALL - Online Family Meetup Place](#family-wall---online-family-meetup-place)
+- [UX](#ux)
+  * [User Stories](#user-stories)
+- [Features and App Sections](#features-and-app-sections)
+  * [App Sections](#app-sections)
+  * [Features](#features)
+  * [Wireframes and Mockups](#wireframes-and-mockups)
+- [Graphic Design and Brand Elements](#graphic-design-and-brand-elements)
+  * [Fonts](#fonts)
+  * [Colours](#colours)
+  * [Visual Style](#visual-style)
+- [Technologies Used](#technologies-used)
+  * [APIs](#apis)
+- [Defensive Programming](#defensive-programming)
+  * [Additional Security Checks](#additional-security-checks)
+  * [Custom Validation](#custom-validation)
+- [Testing](#testing)
+- [Validation Testing](#validation-testing)
+  * [Unit Testing](#unit-testing)
+  * [Cross Browser/Cross Device Verification](#cross-browser-cross-device-verification)
+  * [Python Testing](#python-testing)
+  * [Travis](#travis)
+  * [Defects](#defects)
+    + [Bugs of Note:](#bugs-of-note-)
+    + [Outstanding Defect](#outstanding-defect)
+- [Deployment](#deployment)
+  * [Requirements](#requirements)
+  * [Local Environment](#local-environment)
+  * [Heroku](#heroku)
+- [Credits](#credits)
+  * [Content](#content)
+  * [Media](#media)
+  * [Acknowledgements](#acknowledgements)
 
 
 # UX
@@ -114,13 +146,14 @@ Technology used that is connected to [Bootstrap](https://getbootstrap.com/) for 
 1. [Popper.js](https://popper.js.org/)
 1. [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
-Additionally, we have also used the following platforms to help us shape the website and the brand:
+Additionally, we have also used the following platforms to help us shape the website, the brand and documentation:
 
 1. [GitHub](https://github.com/) - for hosting the project's repository
 1. [Heroku](https://www.heroku.com/) - for hosting our project
 1. [Google Fonts](https://fonts.google.com/) - for selecting the fonts and implementing them into the HTML code
 1. [Figma](https://www.figma.com/) - for creating initial wireframe, some icons and brand identity
 1. [Balsamiq](https://balsamiq.com/) - for creating wireframes
+1. [TOC Generator](https://ecotrust-canada.github.io/markdown-toc/) - for generating TOC of this readme file
 
 ## APIs
 
