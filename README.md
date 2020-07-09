@@ -106,7 +106,11 @@ Initial low-fi wireframe for desktop:
 
 Here is one of the mockups from the [PDF](static/assets/images/readme-files/wireframes.pdf) linked in the previous section.
 
-![Mockup](static/assets/readme-files/wireframes-desktop-mobile.png)
+![Mockup ERD](static/assets/readme-files/wireframes-desktop-mobile.png)
+
+Below you can see our model's diagram (ERD):
+
+![Mockup](mockups/models_ERD.png)
 
 # Graphic Design and Brand Elements
 
