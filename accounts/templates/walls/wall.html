@@ -32,6 +32,10 @@
                         </select>
                     </div>
                 {% endif %}
+                <div class="form-group">
+                    <a href="{% url 'update_family' id=family.pk %}" class="btn btn-primary"><i
+                            class="fa fa-cogs"></i> Update Family</a>
+                </div>
                 <div class="row">
                     <div id="YourStatusAccordion" class="w-100">
                         <div class="card">
