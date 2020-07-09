@@ -32,7 +32,7 @@ As a user...
 * I want to stay in touch with my family so that I don't feel isolated
 * I want to know what is happening in lives of other family members so that I don't feel like I'm missing out important things while I'm at home
 * I want to be able to request help if I need it from my whole family so that I don't have to constantly annoy only one person
-* I want to .............
+* I want to have a 
 
 # Features and App Sections
 
@@ -100,7 +100,9 @@ This project greatly focuses on the following technologies:
 1. [HTML](https://en.wikipedia.org/wiki/HTML) - for creating the layout and the structure of the website
 1. [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - for styling the website’s HTML code
 1. [Bootstrap](https://getbootstrap.com/) - for additional styling and adding responsiveness to the website
-1. [JavaScript](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - for adding functionalities behind the elements
+1. [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - for adding functionalities behind the elements
+1. [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - for the backend
+1. [Django](https://en.wikipedia.org/wiki/Django_(web_framework)) - python based open-source web framework
 1. [Git](https://git-scm.com/) - for version control
 
 Technology used that is connected to [Bootstrap](https://getbootstrap.com/) for some components to function properly:
