@@ -34,6 +34,25 @@ As a user...
 * I want to be able to request help if I need it from my whole family so that I don't have to constantly annoy only one person
 * I want to .............
 
+## Features and App Sections
+
+### App Sections
+
+1. **Top navigation bar** - fixed on the top so that the users are able to navigate themselves back to the homepage, log in to their family wall, register or create a new family wall
+1. **Homepage** - provides a short welcome message with the description of the app
+1. **Family Wall** - once logged in, a place where all the members of the family can come together and hang out online
+
+### Features
+
+1. **Register** - create an account so that you can be invited to different family groups
+1. **Update User Profile** - after the registration, users can update their name and add a profile image
+1. **Create a Family Group** - create a family, add a family image and invite other family members to the group
+1. **Update Family Group** - update family group image and add new members
+1. **Update Your Status** - let others know how are you feeling today, what are your plans and request help from others
+1. **Post Messages on the Wall** - post what is on your mind or what you want others to know in the family group
+1. **Post Photos on the Wall** - upload images to the wall
+1. **React to posts and photos** - choose from 3 different reactions - thumbs up, heart and a star
+
 ## APIs
 
 - [AWS S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html) - allows seamless uploading of user files to cloud storage using application credentials
