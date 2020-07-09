@@ -61,13 +61,13 @@ Initial low-fi wireframe for desktop:
 
 ![Desktop Low-Fi Wireframe](static/assets/readme-files/lowfi-wireframe-desktop.png)
 
-Desktop:
+<!-- Desktop:
 
 ![Desktop Wireframe](static/assets/images/app_desktop.png)
 
 Mobile:
 
-![Mobile Wireframe](static/assets/images/app_mobile.png)
+![Mobile Wireframe](static/assets/images/app_mobile.png) -->
 
 ## Graphic Design and Brand Elements
 
