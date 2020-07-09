@@ -12,7 +12,7 @@ import json
 from .password import random_string
 from posts.models import Post
 from ci_hackathon_july_2020.settings import EMAIL_HOST_USER, DEFAULT_DOMAIN
-from django.core.mail import EmailMultiAlternatives, EmailMessage
+from django.core.mail import EmailMultiAlternatives
 import logging
 from status.forms import MOOD_CHOICES
 
@@ -358,12 +358,35 @@ def userprofile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
-            if 'form-0-profile_picture' in request.FILES:
-                user.user_profile.profile_picture = request.FILES['form-0-profile_picture']
-            form.save()
 
-            messages.info(request, 'Profile updated successfully')
-            return redirect(reverse('default_wall'))
+            email = form.data['email']
+            if User.objects.filter(email=email).exclude(id=user.id).count() == 0:
+                user = User.objects.get(id=user.id)
+                user.email = email
+                user.first_name = form.data['first_name']
+                user.last_name = form.data['last_name']
+                if 'form-0-profile_picture' in request.FILES:
+                    user.user_profile.profile_picture = request.FILES['form-0-profile_picture']
+                form.save()
+                user.save()
+                messages.info(request, 'Profile updated successfully')
+                return redirect(reverse('default_wall'))
+            else:
+                form.fields['username'].default_error_messages = {
+                    'required': 'That email address is already in use.'}
+                form.fields['username'].error_messages = {'required': 'That email address is already in use.'}
+                messages.error(request, f'That email is already in use.')
+                formset = profileFormSet()
+                return render(request, 'userprofile.html', {
+                    'form': form,
+                    'formset': formset
+                })
+        else:
+            formset = profileFormSet()
+            return render(request, 'userprofile.html', {
+                'form': form,
+                'formset': formset
+            })
     else:
         form = ProfileForm(instance=request.user)
         formset = profileFormSet()
@@ -401,4 +424,3 @@ def delete_email(members, family):
         log.warning(f"WARNING: STMPResponseException: ", error_code, error_message)
 
     return True
-

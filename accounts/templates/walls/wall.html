@@ -131,12 +131,6 @@
 
             <div class="right col-md-7 col-sm-12">
                 <div class="row">
-                    <div class="col-12">
-                        <div class="my_new_style" style="background-image: url('{{ family.hero_image.url }}'" )>
-                            <span>{{ family.family_name|capfirst }} Dashboard</div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-12">
@@ -149,58 +143,87 @@
                         </div>
                     </div>
                 </div>
-                {% for post in posts %}
-                    {% if loopcounter == 1 %}
+                <div class="post-wrapper w-100">
+                    <div id="PostsAccordion" class="w-100">
+                        <div class="card">
+                            <div class="card-header status" id="posts">
+                                <div class="title mb-0">
+                                    What's been Happening?
+                                </div>
+                            </div>
+                            <div id="post-{{ post.id }}" class="collapse show" aria-labelledby="your_status"
+                                 data-parent="#PostsAccordion">
+                                <div class="card-body">
+                                    {% for post in posts %}
+                                        {% if forloop.counter == 1 %}
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <a href="{% url 'add_post' id=family.pk %}" class="btn btn-primary"><i
+                                                            class="far fa-comment-alt"></i> Post</a>
+                                                </div>
+                                                <div class="col">
+                                                    <a href="{% url 'add_image' id=family.pk %}"
+                                                       class="btn btn-primary"><i
+                                                            class="fas fa-image"></i> Image</a>
+                                                </div>
+                                            </div>
+                                        {% endif %}
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <a href="{% url 'add_post' id=family.pk %}" id="btn-primary-addpost"
-                                   class="btn btn-primary"><i
-                                        class="fa fa-plus"></i> Add
-                                    Post</a>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="{% url 'add_image' id=family.pk %}" class="btn btn-primary"><i
-                                        class="fa fa-plus"></i> Share
-                                    Image</a>
-                            </div>
-                        </div>
-                    {% endif %}
-                    <div class="row">
-                        {% if post.status %}
-                            <div class="col-12">
-                                <div class="post-text">{{ post.status }}</div>
-                            </div>
-                        {% elif post.photo %}
-                            <div class="col-sm-12 col-md-4">
-                                <img class="img-thumbnail" src="{{ post.photo.url }}"
-                                     alt="image by {{ post.user }}"/>
-                            </div>
-                        {% endif %}
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            By: {{ post.user }}
-                        </div>
-                        <div class="col-6">
-                            On: {{ post.datetime|format_date }}
-                        </div>
+                                        <div class="row post">
+                                            {% if post.status %}
+                                                <div class="col-12">
+                                                    <div class="post-text">{{ post.status }}</div>
+                                                </div>
+                                                <div class="col-6-md credit ml-3">
+                                                    {{ post.user }}
+                                                </div>
+                                                <div class="col-6-md credit ml-3">
+                                                    {{ post.datetime|format_date }}
+                                                </div>
+                                            {% elif post.photo %}
+                                                <div class="col-sm-12 col-md-4">
+                                                    <img class="img-thumbnail" src="{{ post.photo.url }}"
+                                                         alt="image by {{ post.user }}"/>
+                                                </div>
 
-                    </div>
-                {% empty %}
-                    There are no posts on the wall yet. Be the first to get things started!
-                {% endfor %}
-                <div class="row">
-                    <div class="col">
-                        <a href="{% url 'add_post' id=family.pk %}" class="btn btn-primary"><i
-                                class="far fa-comment-alt"></i> Add
-                            Post</a>
-                    </div>
-                    <div class="col">
-                        <a href="{% url 'add_image' id=family.pk %}" class="btn btn-primary"><i
-                                class="fas fa-image"></i>
-                            Share
-                            Image</a>
+                                                <div class="col-sm-12 col-md-8">
+                                                    <div class="col-12 credit">
+                                                        {{ post.user }}
+                                                    </div>
+                                                    <div class="col-12 credit">
+                                                        {{ post.datetime|format_date }}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% empty %}
+
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 m-3 p-2">
+                                                <div class="label label-title">
+                                                    Get Thing Started
+                                                </div>
+                                                <p>Lucky you! You can be the first to post to
+                                                    the {{ family.family_name|title }}
+                                                    Wall!</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <a href="{% url 'add_post' id=family.pk %}" class="btn btn-primary"><i
+                                            class="far fa-comment-alt"></i> Post</a>
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'add_image' id=family.pk %}"
+                                       class="btn btn-primary"><i
+                                            class="fas fa-image"></i> Image</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
