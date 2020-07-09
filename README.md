@@ -11,7 +11,7 @@ Our goal is to keep the focus on the family and streamline the ability to share 
 
 ![App Showcase](static/assets/readme-files/app-showcase.png)
 
-## UX
+# UX
 
 The results of the latest researches related to the COVID-19 pandemic have one thing in common - people aged 60 and above are more prone to coronavirus infection than any other age group.
 It is crucial, therefore, for elderly people to limit their exposure to the virus as much as possible since the consequences can be severe.
@@ -25,7 +25,7 @@ Family Wall is primarily created for families with older members who are not abl
 It is designed as a combination of a Facebook wall and a private Whatsapp group.
 Members of the family wall can update the family on how they are feeling, what are they doing, request help from each other - as well as add posts and images to the wall.
 
-### User Goals
+## User Goals
 
 As a user...
 
@@ -34,15 +34,15 @@ As a user...
 * I want to be able to request help if I need it from my whole family so that I don't have to constantly annoy only one person
 * I want to .............
 
-## Features and App Sections
+# Features and App Sections
 
-### App Sections
+## App Sections
 
 1. **Top navigation bar** - fixed on the top so that the users are able to navigate themselves back to the homepage, log in to their family wall, register or create a new family wall
 1. **Homepage** - provides a short welcome message with the description of the app
 1. **Family Wall** - once logged in, a place where all the members of the family can come together and hang out online
 
-### Features
+## Features
 
 1. **Register** - create an account so that you can be invited to different family groups
 1. **Update User Profile** - after the registration, users can update their name and add a profile image
@@ -53,7 +53,7 @@ As a user...
 1. **Post Photos on the Wall** - upload images to the wall
 1. **React to posts and photos** - choose from 3 different reactions - thumbs up, heart and a star
 
-### Wireframes
+## Wireframes
 
 Our wireframes were made in [Figma](https://www.figma.com/) and [Balsamiq](https://balsamiq.com/). The PDF of all of our wireframes is available [here.](static/assets/images/readme-files/wireframes.pdf)
 
@@ -69,17 +69,17 @@ Mobile:
 
 ![Mobile Wireframe](static/assets/images/app_mobile.png) -->
 
-## Graphic Design and Brand Elements
+# Graphic Design and Brand Elements
 
 Since our product is primarily made to be used by elderly people, we have put efforts into making sure the app's design is as simple as possible.
 On the one hand we have followed industry standards by implementing gradient colour effects to achieve a modern look, while on the other hand - we made sure the design is clean and not overwhelming.
 
-### Fonts
+## Fonts
 
 As our first step, we have done a brief research about the fonts used by [Facebook](https://www.facebook.com/) and [Whatsapp](https://www.whatsapp.com/).
 Since some of the fonts were copyrighted, we have looked into similar options on [Google Fonts](https://fonts.google.com/) and picked [Open Sans](https://fonts.google.com/specimen/Open+Sans?query=open+sans) and [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab) for our textual content.
 
-### Colours
+## Colours
 
 As [Facebook](https://www.facebook.com/) and [Whatsapp](https://www.whatsapp.com/), our primary sources of inspiration, tend to use mainly calming colours like blue and green for their UI, we have decided to stay as close as possible to this approach.
 Our colour palette relies on colder colours like blue, the colour of trust and loyalty, and purple, the colour of wisdom - with the unique gradient colour combination combining both blue and purple colour.
@@ -88,7 +88,7 @@ The text is mostly written in a darker shade of grey colour for better readabili
 
 ![Colour palette](static/assets/readme-files/colour-palette.png)
 
-### Visual Style
+## Visual Style
 
 Overall, our visual style is relying on modern UI principles like round corners and light shadows for the elements such as navigation, footer, images and buttons.
 Since our product is primarily made to be used by elderly people, our elements and font sizes tend to be larger than what might be expected from modern app UI and we tried to use uppercase text where possible.
