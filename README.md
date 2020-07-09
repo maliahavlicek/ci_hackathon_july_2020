@@ -11,6 +11,21 @@ Our goal is to keep the focus on the family and streamline the ability to share 
 
 ![App Showcase](static/assets/readme-files/app-showcase.png)
 
+## UX
+
+The results of the latest researches related to the COVID-19 pandemic have one thing in common - people aged 60 and above are more prone to coronavirus infection than any other age group.
+It is crucial, therefore, for elderly people to limit their exposure to the virus as much as possible since the consequences can be severe.
+Limiting the exposure along with social distancing rules which vary from country to country are more often than not leaving elderly people socially isolated and split off from their families.
+
+As human beings are social animals, social networking is part of our nature.
+We also know that social interaction has a positive impact on immune system, physical health and mental sharpness.
+Since social distancing rules are still active, older family members are struggling to stay in touch with their families and loved ones - which could potentially have a huge impact on their wellbeing.
+
+Family Wall is primarily created for families with older members who are not able to communicate in person on regular basis with the rest of the family.
+It is designed as a combination of a Facebook wall and a private Whatsapp group.
+Members of the family wall can update the family on how they are feeling, what are they doing, request help from each other - as well as add posts and images to the wall.
+
+
 ## APIs
 
 - [AWS S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html) - allows seamless uploading of user files to cloud storage using application credentials
