@@ -108,6 +108,7 @@ Here is one of the mockups from the [PDF](static/assets/images/readme-files/wire
 
 ![Mockup ERD](static/assets/readme-files/wireframes-desktop-mobile.png)
 
+To create a proper model for all the required content an ERD is created on the second team call, This model has been expended later in the project to fit te extended requirements.
 Below you can see our model's diagram (ERD):
 
 ![Mockup](mockups/models_ERD.png)
