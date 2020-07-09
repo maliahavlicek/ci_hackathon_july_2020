@@ -25,6 +25,14 @@ Family Wall is primarily created for families with older members who are not abl
 It is designed as a combination of a Facebook wall and a private Whatsapp group.
 Members of the family wall can update the family on how they are feeling, what are they doing, request help from each other - as well as add posts and images to the wall.
 
+### User Goals
+
+As a user...
+
+* I want to stay in touch with my family so that I don't feel isolated
+* I want to know what is happening in lives of other family members so that I don't feel like I'm missing out important things while I'm at home
+* I want to be able to request help if I need it from my whole family so that I don't have to constantly annoy only one person
+* I want to .............
 
 ## APIs
 
