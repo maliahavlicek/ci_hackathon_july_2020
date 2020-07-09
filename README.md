@@ -53,6 +53,23 @@ As a user...
 1. **Post Photos on the Wall** - upload images to the wall
 1. **React to posts and photos** - choose from 3 different reactions - thumbs up, heart and a star
 
+### Wireframes
+
+Our wireframes were made in [Figma](https://www.figma.com/) and [Balsamiq](https://balsamiq.com/). The PDF of all of our wireframes is available [here.](static/assets/images/readme-files/wireframes.pdf)
+
+Initial low-fi wireframe for desktop:
+
+![Desktop Low-Fi Wireframe](static/assets/readme-files/lowfi-wireframe-desktop.png)
+
+Desktop:
+
+![Desktop Wireframe](static/assets/images/app_desktop.png)
+
+Mobile:
+
+![Mobile Wireframe](static/assets/images/app_mobile.png)
+
+
 ## APIs
 
 - [AWS S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html) - allows seamless uploading of user files to cloud storage using application credentials
