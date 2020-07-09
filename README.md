@@ -69,6 +69,30 @@ Mobile:
 
 ![Mobile Wireframe](static/assets/images/app_mobile.png)
 
+## Graphic Design and Brand Elements
+
+Since our product is primarily made to be used by elderly people, we have put efforts into making sure the app's design is as simple as possible.
+On the one hand we have followed industry standards by implementing gradient colour effects to achieve a modern look, while on the other hand - we made sure the design is clean and not overwhelming.
+
+### Fonts
+
+As our first step, we have done a brief research about the fonts used by [Facebook](https://www.facebook.com/) and [Whatsapp](https://www.whatsapp.com/).
+Since some of the fonts were copyrighted, we have looked into similar options on [Google Fonts](https://fonts.google.com/) and picked [Open Sans](https://fonts.google.com/specimen/Open+Sans?query=open+sans) and [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab) for our textual content.
+
+### Colours
+
+As [Facebook](https://www.facebook.com/) and [Whatsapp](https://www.whatsapp.com/), our primary sources of inspiration, tend to use mainly calming colours like blue and green for their UI, we have decided to stay as close as possible to this approach.
+Our colour palette relies on colder colours like blue, the colour of trust and loyalty, and purple, the colour of wisdom - with the unique gradient colour combination combining both blue and purple colour.
+The clean contrast between the background and clickable elements like buttons is ensured by using lighter shades of blue and purple colour.
+The text is mostly written in a darker shade of grey colour for better readability.
+
+![Colour palette](static/assets/readme-files/colour-palette.png)
+
+### Visual Style
+
+Overall, our visual style is relying on modern UI principles like round corners and light shadows for the elements such as navigation, footer, images and buttons.
+Since our product is primarily made to be used by elderly people, our elements and font sizes tend to be larger than what might be expected from modern app UI and we tried to use uppercase text where possible.
+
 
 ## APIs
 
