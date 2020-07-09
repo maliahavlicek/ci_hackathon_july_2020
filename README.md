@@ -385,7 +385,15 @@ No website can be created without the community resources found on the web. Sear
 
 ## Content
 
+* The textual content for this web app is completely original, written by us.
+
 ## Media
+
+* Some photos on the website are taken from [Unsplash](https://unsplash.com/) while some are our own.
+* Icons are downloaded from [Flaticon](https://www.flaticon.com/) and [Font Awesome](https://fontawesome.com/) or designed by us.
+* The product showcase image was taken with the help of [Ami.ResponsiveDesign](http://ami.responsivedesign.is/) and [Figma](https://www.figma.com/).
+* Brand identity was inspired by examples on [Dribbble](https://dribbble.com/).
 
 ## Acknowledgements
 
+* Thank you [CodeInstitute](https://codeinstitute.net/) for giving us a chance to participate in our first hackathon!
