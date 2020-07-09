@@ -13,6 +13,7 @@
 {% endblock %}
 {% block page_heading %}
     {# Put page specific javascript tags here. Ok to be empty. #}
+
 {% endblock %}
 {% block main_content %}
     {# Put main content here. SHOULD NOT BE EMPTY. #}
@@ -126,6 +127,12 @@
 
             <div class="right col-md-7 col-sm-12">
                 <div class="row">
+                    <div class="col-12">
+                        <div class="my_new_style" style="background-image: url('{{ family.hero_image.url }}'" )>
+                            <span>{{ family.family_name|capfirst }} Dashboard</div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-12">
@@ -138,7 +145,7 @@
                         </div>
                     </div>
                 </div>
-                {% for post in post %}
+                {% for post in posts %}
                     {% if loopcounter == 1 %}
 
                         <div class="row">
@@ -156,7 +163,25 @@
                         </div>
                     {% endif %}
                     <div class="row">
-                        {{ post }}
+                        {% if post.status %}
+                            <div class="col-12">
+                                <div class="post-text">{{ post.status }}</div>
+                            </div>
+                        {% elif post.photo %}
+                            <div class="col-sm-12 col-md-4">
+                                <img class="img-thumbnail" src="{{ post.photo.url }}"
+                                     alt="image by {{ post.user }}"/>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            By: {{ post.user }}
+                        </div>
+                        <div class="col-6">
+                            On: {{ post.datetime|format_date }}
+                        </div>
+
                     </div>
                 {% empty %}
                     There are no posts on the wall yet. Be the first to get things started!
