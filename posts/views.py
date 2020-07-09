@@ -5,7 +5,7 @@ from django.contrib import messages
 from users.models import User
 from accounts.models import Family
 from .models import Post
-from .forms import CreatPostForm
+from .forms import CreatePostForm, CreateImageForm
 
 
 @login_required
@@ -24,22 +24,24 @@ def add_image(request, id):
         # in case user bookmarks a page and db re-indexes
         messages.warning(request, "Sorry the family you are adding an image to does not exist.")
         return redirect(reverse('wall'))
+    form = CreateImageForm()
+    if request.method == 'POST':
+        form = CreateImageForm(request.POST, request.FILES)
+        if 'cancel' in request.POST:
+            return redirect(reverse('default_wall'))
+        if form.is_valid():
+            post = Post.objects.create(
+                photo=request.FILES['photo'],
+                user=user,
+                family=family
+            )
+            # let user know the post was created
+            messages.success(request,
+                             "Your image was successfully shared ")
+            return redirect(reverse('wall', kwargs={"id": str(family.pk)}))
 
-    return render(request, "share_image.html")
+    return render(request, "share_image.html", {"form": form, })
 
-
-@login_required
-def update_image(request, id):
-    """
-    Show Image Update Form
-    """
-    user = request.user
-    post = Post.objects.filter(id=id)
-    if user != post.user:
-        messages.warning(request, "You do not have permission to update this image")
-        return redirect(reverse('wall'))
-
-    return render(request, "update_image.html")
 
 
 @login_required
@@ -60,9 +62,9 @@ def add_post(request, id):
         messages.warning(
             request, "Sorry the family you are posting to does not exist.")
         return redirect(reverse('wall'))
-    form = CreatPostForm()
+    form = CreatePostForm()
     if request.method == 'POST':
-        form = CreatPostForm(request.POST, request.FILES)
+        form = CreatePostForm(request.POST, request.FILES)
         if 'cancel' in request.POST:
             return redirect(reverse('default_wall'))
         if form.is_valid():
@@ -75,7 +77,6 @@ def add_post(request, id):
             messages.success(request,
                              "Your post was successfully created ")
             return redirect(reverse('wall', kwargs={"id": str(family.pk)}))
-            # return redirect('pagename', param1, param2)
 
     return render(request, "create_post.html", {"form": form, })
 
@@ -92,3 +93,17 @@ def update_post(request, id):
         return redirect(reverse('wall'))
 
     return render(request, "update_post.html")
+
+
+@login_required
+def update_image(request, id):
+    """
+    Show Image Update Form
+    """
+    user = request.user
+    post = Post.objects.filter(id=id)
+    if user != post.user:
+        messages.warning(request, "You do not have permission to update this image")
+        return redirect(reverse('wall'))
+
+    return render(request, "update_image.html")

@@ -118,10 +118,24 @@
                     {% endif %}
                     <div class="row">
                         {% if post.status %}
-                            {{ post.status }}
-                        {% elif post.image %}
-                            {{ post.image }}
+                            <div class="col-12">
+                                <div class="post-text">{{ post.status }}</div>
+                            </div>
+                        {% elif post.photo %}
+                            <div class="col-sm-12 col-md-4">
+                                <img class="img-thumbnail" src="{{ post.photo.url }}"
+                                     alt="image by {{ post.user }}"/>
+                            </div>
                         {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            By: {{ post.user }}
+                        </div>
+                        <div class="col-6">
+                            On: {{ post.datetime|format_date }}
+                        </div>
+
                     </div>
                 {% empty %}
                     There are no posts on the wall yet. Be the first to get things started!
