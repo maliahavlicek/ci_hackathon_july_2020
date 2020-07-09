@@ -398,4 +398,5 @@ No website can be created without the community resources found on the web. Sear
 
 ## Acknowledgements
 
-* Thank you [CodeInstitute](https://codeinstitute.net/) for giving us a chance to participate in our first hackathon!
+* This article on [How to style radio buttons as images](https://stackoverflow.com/questions/17541614/use-images-instead-of-radio-buttons) helped us achieve a more unique look of our user status form.
+* Last but not least - thank you [CodeInstitute](https://codeinstitute.net/) for giving us a chance to participate in our first hackathon!
